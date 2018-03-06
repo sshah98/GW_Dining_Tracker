@@ -1,0 +1,201 @@
+,Account,Date,Time,Vendor,Price
+0,Dining Cash,2018-03-05,19:14:00,Chick-fil-A DH,6.75
+1,Dining Cash,2018-03-05,16:50:00,Sol Mexican,9.63
+2,Dining Cash,2018-03-05,11:05:00,WEPA SEH LL1,0.32
+3,Dining Cash,2018-03-05,10:26:00,GW DELI,5.71
+4,Dining Cash,2018-03-04,20:55:00,Whole Foods,13.29
+5,Dining Cash,2018-03-04,13:33:00,Au Bon Pain GW,10.43
+6,Dining Cash,2018-03-04,11:45:00,CVS #02847,5.28
+7,Dining Cash,2018-03-03,19:17:00,Wiseguy Pizza,8.4
+8,Dining Cash,2018-03-03,13:11:00,Whole Foods,14.06
+9,Dining Cash,2018-03-02,11:59:00,Chick-fil-A DH,8.39
+10,Dining Cash,2018-03-01,18:02:00,&Pizza,10.5
+11,Dining Cash,2018-03-01,12:25:00,Whole Foods,12.39
+12,Dining Cash,2018-02-28,18:50:00,Whole Foods,8.8
+13,Dining Cash,2018-02-28,12:19:00,Sol Mexican,9.63
+14,Dining Cash,2018-02-27,23:58:00,Guthridge Hall Dryer B4,1.75
+15,Dining Cash,2018-02-27,23:21:00,Guthridge Hall Washer A3,1.75
+16,Dining Cash,2018-02-27,19:11:00,Penn Grill & Cafe,12.03
+17,Dining Cash,2018-02-27,13:01:00,GRK Fresh DH,8.53
+18,Dining Cash,2018-02-26,20:37:00,Chick-fil-A DH,6.86
+19,Dining Cash,2018-02-26,17:35:00,Sweet Green,10.62
+20,Dining Cash,2018-02-26,12:03:00,Wiseguy Pizza,8.78
+21,Dining Cash,2018-02-25,18:38:00,Sol Mexican,9.63
+22,Dining Cash,2018-02-25,13:01:00,Whole Foods,10.58
+23,Dining Cash,2018-02-23,22:19:00,Gallery Market,4.49
+24,Dining Cash,2018-02-23,13:23:00,Whole Foods,8.8
+25,Dining Cash,2018-02-23,01:13:00,Gallery Market,4.18
+26,Dining Cash,2018-02-22,19:31:00,Chick-fil-A DH,8.39
+27,Dining Cash,2018-02-22,12:37:00,Whole Foods,7.33
+28,Dining Cash,2018-02-21,19:44:00,Wiseguy Pizza,8.78
+29,Dining Cash,2018-02-21,18:12:00,Chick-fil-A DH,2.48
+30,Dining Cash,2018-02-21,17:52:00,Sodexo GW Hospital,4.68
+31,Dining Cash,2018-02-21,12:42:00,Sol Mexican,9.63
+32,Dining Cash,2018-02-20,18:01:00,&Pizza,10.5
+33,Dining Cash,2018-02-20,12:52:00,Whole Foods,7.05
+34,Dining Cash,2018-02-19,19:40:00,Whole Foods,8.91
+35,Dining Cash,2018-02-19,17:14:00,Guthridge Hall Dryer B4,1.75
+36,Dining Cash,2018-02-19,16:40:00,Guthridge Hall Washer A4,1.75
+37,Dining Cash,2018-02-16,16:16:00,Wiseguy Pizza,3.29
+38,Dining Cash,2018-02-16,13:07:00,Penn Grill & Cafe,14.89
+39,Dining Cash,2018-02-15,23:37:00,Gallery Market,6.99
+40,Dining Cash,2018-02-15,20:14:00,&Pizza,10.5
+41,Dining Cash,2018-02-15,18:25:00,Gallery Market,1.69
+42,Dining Cash,2018-02-15,12:07:00,Sol Mexican,9.63
+43,Dining Cash,2018-02-14,18:50:00,Gallery Market,7.86
+44,Dining Cash,2018-02-14,12:03:00,Roti Mediterranean Grill,10.13
+45,Dining Cash,2018-02-13,18:53:00,Chick-fil-A DH,9.27
+46,Dining Cash,2018-02-13,12:49:00,Whole Foods,13.88
+47,Dining Cash,2018-02-12,23:00:00,Gallery Market,4.68
+48,Dining Cash,2018-02-12,17:22:00,Wiseguy Pizza,8.78
+49,Dining Cash,2018-02-12,12:00:00,Whole Foods,2.99
+50,Dining Cash,2018-02-12,11:52:00,Whole Foods,8.8
+51,Dining Cash,2018-02-11,22:20:00,Guthridge Hall Dryer B6,1.75
+52,Dining Cash,2018-02-11,22:19:00,Guthridge Hall Dryer B4,1.75
+53,Dining Cash,2018-02-11,21:44:00,Guthridge Hall Washer A5,1.75
+54,Dining Cash,2018-02-11,21:44:00,Guthridge Hall Washer A6,1.75
+55,Dining Cash,2018-02-11,18:45:00,Panera Bread,9.88
+56,Dining Cash,2018-02-11,12:13:00,Sol Mexican,14.19
+57,Dining Cash,2018-02-10,13:01:00,Chick-fil-A DH,8.69
+58,Dining Cash,2018-02-09,20:05:00,Panera Bread,11.2
+59,Dining Cash,2018-02-09,14:08:00,Chick-fil-A DH,8.94
+60,Dining Cash,2018-02-09,12:37:00,WEPA SEH 2nd FLR,1.28
+61,Dining Cash,2018-02-08,18:22:00,&Pizza,10.5
+62,Dining Cash,2018-02-08,16:43:00,WEPA District House LL1,0.08
+63,Dining Cash,2018-02-08,12:34:00,Whole Foods,2.99
+64,Dining Cash,2018-02-08,12:27:00,Whole Foods,8.8
+65,Dining Cash,2018-02-07,18:39:00,Panera Bread,9.88
+66,Dining Cash,2018-02-07,14:24:00,Chick-fil-A DH,6.86
+67,Dining Cash,2018-02-06,19:14:00,Wiseguy Pizza,8.78
+68,Dining Cash,2018-02-06,13:27:00,Sodexo GW Hospital,8.88
+69,Dining Cash,2018-02-06,11:21:00,Guthridge Hall Dryer B4,1.75
+70,Dining Cash,2018-02-06,11:20:00,Guthridge Hall Dryer B2,1.75
+71,Dining Cash,2018-02-06,10:45:00,Guthridge Hall Washer A5,1.75
+72,Dining Cash,2018-02-06,10:44:00,Guthridge Hall Washer A4,1.75
+73,Dining Cash,2018-02-05,18:07:00,PeetsCoffee DH,2.37
+74,Dining Cash,2018-02-05,11:53:00,Sol Mexican,9.63
+75,Dining Cash,2018-02-04,18:36:00,&Pizza,10.5
+76,Dining Cash,2018-02-04,13:53:00,Whole Foods,12.2
+77,Dining Cash,2018-02-03,19:59:00,Wiseguy Pizza,4.39
+78,Dining Cash,2018-02-03,12:49:00,Whole Foods,13.3
+79,Dining Cash,2018-02-02,13:07:00,Panera Bread,6.92
+80,Dining Cash,2018-02-01,18:19:00,Wiseguy Pizza,8.78
+81,Dining Cash,2018-02-01,13:28:00,Starbucks #8759,4.13
+82,Dining Cash,2018-02-01,13:12:00,Sol Mexican,9.63
+83,Dining Cash,2018-01-31,17:20:00,Whole Foods,6.43
+84,Dining Cash,2018-01-31,12:05:00,Whole Foods,2.29
+85,Dining Cash,2018-01-31,11:59:00,Whole Foods,8.8
+86,Dining Cash,2018-01-30,18:18:00,GRK Fresh DH,8.53
+87,Dining Cash,2018-01-30,13:00:00,Wiseguy Pizza,8.78
+88,Dining Cash,2018-01-29,22:47:00,CVS #02847,7.93
+89,Dining Cash,2018-01-29,17:19:00,Sol Mexican,9.63
+90,Dining Cash,2018-01-29,14:08:00,Sodexo GW Hospital,3.84
+91,Dining Cash,2018-01-29,11:12:00,Guthridge Hall Dryer B6,1.75
+92,Dining Cash,2018-01-29,10:42:00,Guthridge Hall Washer A3,1.75
+93,Dining Cash,2018-01-28,19:50:00,Burger Tap and Shake,9.35
+94,Dining Cash,2018-01-28,13:19:00,Sol Mexican,12.16
+95,Dining Cash,2018-01-27,21:46:00,CVS #01358,4.31
+96,Dining Cash,2018-01-27,17:18:00,Chick-fil-A DH,8.39
+97,Dining Cash,2018-01-26,18:00:00,TGI Fridays #1757 GW,6.25
+98,Dining Cash,2018-01-26,12:34:00,Wiseguy Pizza,8.78
+99,Dining Cash,2018-01-25,21:32:00,CVS #01358,1.36
+100,Dining Cash,2018-01-25,21:01:00,&Pizza,10.5
+101,Dining Cash,2018-01-25,13:11:00,Sol Mexican,9.63
+102,Dining Cash,2018-01-24,14:19:00,Roti Mediterranean Grill,9.08
+103,Dining Cash,2018-01-24,12:26:00,WEPA SEH Gnd FLR,0.24
+104,Dining Cash,2018-01-24,12:06:00,WEPA SEH 2nd FLR,0.16
+105,Dining Cash,2018-01-23,18:21:00,Chick-fil-A DH,8.39
+106,Dining Cash,2018-01-23,12:11:00,Sol Mexican,9.63
+107,Dining Cash,2018-01-22,12:01:00,Roti Mediterranean Grill,9.08
+108,Dining Cash,2018-01-21,22:52:00,Guthridge Hall Dryer B7,1.75
+109,Dining Cash,2018-01-21,22:19:00,Guthridge Hall Washer A2,1.75
+110,Dining Cash,2018-01-21,20:00:00,&Pizza,10.5
+111,Dining Cash,2018-01-21,14:36:00,WEPA Glmn 1FLe,0.4
+112,Dining Cash,2018-01-21,13:12:00,Whole Foods,11.69
+113,Dining Cash,2018-01-20,19:12:00,GRK Fresh DH,9.3
+114,Dining Cash,2018-01-20,12:22:00,Potbelly Sandwich Works - GW,8.86
+115,Dining Cash,2018-01-19,18:22:00,Panera Bread,10.21
+116,Dining Cash,2018-01-19,12:58:00,&Pizza,10.5
+117,Dining Cash,2018-01-19,00:52:00,Surf Side Taco Stand,4.35
+118,Dining Cash,2018-01-18,18:50:00,Chipotle 2000 Pen,8.47
+119,Dining Cash,2018-01-18,12:51:00,Gallery Market,40.93
+120,Dining Cash,2018-01-17,19:29:00,Chick-fil-A DH,5.38
+121,Dining Cash,2018-01-17,12:18:00,Sol Mexican,9.63
+122,Dining Cash,2018-01-16,12:06:00,Wiseguy Pizza,4.39
+123,Dining Cash,2018-01-15,21:19:00,TGI Fridays #1757 GW,7.81
+124,Dining Cash,2018-01-15,17:00:00,Whole Foods,21.85
+125,Dining Cash,2018-01-14,21:45:00,Guthridge Hall Dryer B2,1.75
+126,Dining Cash,2018-01-14,21:13:00,Guthridge Hall Washer A2,1.75
+127,Dining Cash,2018-01-06,14:39:00,PatronImport Location,1350.0
+128,Dining Cash,2017-12-17,13:34:00,Guthridge Hall Dryer B2,1.75
+129,Dining Cash,2017-12-17,13:33:00,Guthridge Hall Dryer B1,1.75
+130,Dining Cash,2017-12-17,12:31:00,GET Location 365,10.0
+131,Dining Cash,2017-12-17,12:30:00,Guthridge Hall Washer A3,1.75
+132,Dining Cash,2017-12-17,12:28:00,Guthridge Hall Washer A2,1.75
+133,Dining Cash,2017-12-11,11:00:00,Guthridge Hall Dryer B4,1.75
+134,Dining Cash,2017-12-11,10:26:00,Guthridge Hall Washer A2,1.75
+135,Dining Cash,2017-12-09,12:05:00,Chick-fil-A DH,8.46
+136,Dining Cash,2017-12-08,18:15:00,Whole Foods,6.48
+137,Dining Cash,2017-12-08,13:35:00,Wiseguy Pizza,4.39
+138,Dining Cash,2017-12-07,12:55:00,Sol Mexican,9.63
+139,Dining Cash,2017-12-06,21:16:00,Gallery Market,2.79
+140,Dining Cash,2017-12-06,17:26:00,Chick-fil-A DH,4.72
+141,Dining Cash,2017-12-06,15:09:00,PeetsCoffee DH,2.37
+142,Dining Cash,2017-12-06,12:34:00,Whole Foods,9.9
+143,Dining Cash,2017-12-05,19:22:00,Gallery Market,3.99
+144,Dining Cash,2017-12-05,17:20:00,Whole Foods,1.05
+145,Dining Cash,2017-12-05,17:11:00,Whole Foods,4.17
+146,Dining Cash,2017-12-05,12:06:00,Wiseguy Pizza,7.68
+147,Dining Cash,2017-12-04,15:36:00,PeetsCoffee DH,2.37
+148,Dining Cash,2017-12-04,12:33:00,Sodexo GW Hospital,6.14
+149,Dining Cash,2017-12-03,15:46:00,Sol Mexican,9.63
+150,Dining Cash,2017-12-02,15:27:00,Guthridge Hall Dryer B4,1.75
+151,Dining Cash,2017-12-02,14:52:00,Guthridge Hall Washer A2,1.75
+152,Dining Cash,2017-12-02,12:43:00,Chick-fil-A DH,9.05
+153,Dining Cash,2017-11-30,18:28:00,Chipotle 2000 Pen,8.0
+154,Dining Cash,2017-11-30,13:02:00,Au Bon Pain GW,8.23
+155,Dining Cash,2017-11-29,19:11:00,Chick-fil-A DH,7.08
+156,Dining Cash,2017-11-29,12:36:00,Sol Mexican,9.63
+157,Dining Cash,2017-11-28,21:03:00,Sweet Green,10.56
+158,Dining Cash,2017-11-28,17:08:00,Whole Foods,10.86
+159,Dining Cash,2017-11-28,11:55:00,Potbelly Sandwich Works - GW,10.45
+160,Dining Cash,2017-11-27,19:47:00,Chick-fil-A DH,9.05
+161,Dining Cash,2017-11-27,15:18:00,PeetsCoffee DH,2.37
+162,Dining Cash,2017-11-27,12:51:00,Sol Mexican,9.63
+163,Dining Cash,2017-11-27,10:34:00,CVS #01358,4.28
+164,Dining Cash,2017-11-26,17:21:00,WEPA SEH 2nd FLR,0.85
+165,Dining Cash,2017-11-21,15:05:00,Wiseguy Pizza,8.78
+166,Dining Cash,2017-11-21,11:45:00,Guthridge Hall Dryer B2,1.75
+167,Dining Cash,2017-11-21,11:15:00,Guthridge Hall Washer A2,1.75
+168,Dining Cash,2017-11-20,12:34:00,Whole Foods,11.09
+169,Dining Cash,2017-11-19,20:09:00,Burger Tap and Shake,9.35
+170,Dining Cash,2017-11-18,12:33:00,Whole Foods,7.32
+171,Dining Cash,2017-11-17,23:53:00,CVS #02847,2.1
+172,Dining Cash,2017-11-17,23:33:00,TGI Fridays #1757 GW,5.5
+173,Dining Cash,2017-11-17,21:35:00,Chick-fil-A DH,8.47
+174,Dining Cash,2017-11-17,13:12:00,Sweet Green,10.62
+175,Dining Cash,2017-11-16,13:16:00,Au Bon Pain GW,7.46
+176,Dining Cash,2017-11-15,20:58:00,WEPA SEH 2nd FLR,1.7
+177,Dining Cash,2017-11-15,20:10:00,Wiseguy Pizza,3.29
+178,Dining Cash,2017-11-15,18:04:00,Chick-fil-A DH,6.33
+179,Dining Cash,2017-11-15,12:35:00,Whole Foods,5.85
+180,Dining Cash,2017-11-15,00:14:00,Gallery Market,7.37
+181,Dining Cash,2017-11-14,16:59:00,Chick-fil-A DH,6.86
+182,Dining Cash,2017-11-14,13:50:00,Whole Foods,2.79
+183,Dining Cash,2017-11-13,20:53:00,Wiseguy Pizza,7.68
+184,Dining Cash,2017-11-13,19:33:00,Guthridge Hall Dryer B6,1.75
+185,Dining Cash,2017-11-13,18:59:00,Guthridge Hall Washer A3,1.75
+186,Dining Cash,2017-11-13,14:43:00,Whole Foods,10.95
+187,Dining Cash,2017-11-10,20:23:00,Burger Tap and Shake,9.35
+188,Dining Cash,2017-11-10,13:01:00,Whole Foods,2.18
+189,Dining Cash,2017-11-09,16:04:00,Whole Foods,25.03
+190,Dining Cash,2017-11-09,13:29:00,Wiseguy Pizza,3.29
+191,Dining Cash,2017-11-09,13:15:00,CVS #01358,16.6
+192,Dining Cash,2017-11-08,23:17:00,Gallery Market,4.48
+193,Dining Cash,2017-11-08,22:40:00,WEPA SEH 2nd FLR,1.7
+194,Dining Cash,2017-11-08,18:11:00,WEPA SEH 2nd FLR,0.08
+195,Dining Cash,2017-11-08,18:11:00,WEPA SEH 2nd FLR,0.08
+196,Dining Cash,2017-11-08,18:10:00,WEPA SEH 2nd FLR,0.08
+197,Dining Cash,2017-11-08,18:10:00,WEPA SEH 2nd FLR,0.08
+198,Dining Cash,2017-11-08,15:09:00,PeetsCoffee DH,2.75
+199,Dining Cash,2017-11-08,14:15:00,Sweet Green,10.62
