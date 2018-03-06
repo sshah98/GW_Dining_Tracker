@@ -21,7 +21,7 @@ plt.style.use('ggplot')
 
 def login():
 
-    user = input('Enter netID (no gwu.edu): ') + '@gwu.edu'
+    myuser = input('Enter netID (no gwu.edu): ') + '@gwu.edu'
     mypass = getpass.getpass('Password: ')
 
     baseurl = "https://get.cbord.com/gwu/full/login.php"
@@ -37,7 +37,7 @@ def login():
     username = mydriver.find_element_by_id("login_username_text")
     password = mydriver.find_element_by_id("login_password_text")
 
-    username.send_keys(user)
+    username.send_keys(myuser)
     password.send_keys(mypass)
 
     mydriver.find_element_by_name("submit").click()
@@ -94,31 +94,36 @@ def login():
 
     df = df.rename(columns={0: 'Account', 1: 'Date',
                             2: 'Time', 3: 'Vendor', 4: 'Price'})
+                
 
-    df.to_csv('gworld_dollars.csv')
+    myfile = '%s' %myuser.strip('@gwu.edu') + '_gworld_dollars.csv'         
+    df.to_csv(myfile)
 
 
-# login()
+login()
 
 def analysis():
 
     # read csv file and format for proper usage
-    df = pd.read_csv('gworld_dollars.csv', parse_dates=['Date'])
+    df = pd.read_csv('suraj98_gworld_dollars.csv', parse_dates=['Date'])
     df = df.sort_values(by='Date')
     df.set_index('Date', inplace=True)
 
-    df1 = df.truncate(before='2018-01-14')['Price']
+    df1 = df.truncate(before='2018-01-14')['Price'].sum()
+    
+    df2 = df.truncate(before='2018-01-16')['Price']
+    print(df2)
 
-    fig = plt.figure()
-    df1 = df1.plot(kind='line', style='*', figsize=(16, 12))
-    plt.xticks(rotation='vertical')
+    # fig = plt.figure()
+    # df1 = df1.plot(kind='line', style='*', figsize=(16, 12))
+    # plt.xticks(rotation='vertical')
+    # 
+    # df1.set_xlabel("Date")
+    # df1.set_ylabel("Price")
     
-    df1.set_xlabel("Date")
-    df1.set_ylabel("Price")
-    
-    fig.savefig('spending.png', dpi=fig.dpi)
+    # fig.savefig('benspending.png', dpi=fig.dpi)
 
     # plt.show()
 
 
-analysis()
+# analysis()
