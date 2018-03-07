@@ -27,8 +27,8 @@ plt.style.use('fivethirtyeight')
 
 def login():
 
-    myuser = input('Enter netID (no gwu.edu): ')
-    mypass = getpass.getpass('Password: ')
+    myuser = input('Enter username: ')
+    mypass = getpass.getpass('Enter password: ')
 
     baseurl = "https://get.cbord.com/gwu/full/login.php"
 
@@ -150,9 +150,9 @@ def analysis():
     plt.xlabel('Date')
     plt.ylabel('CurrentVal')
 
-    plt.show()    
+    # plt.show()    
 
-    # plt.savefig('kyle_spending.png', bbox_inches='tight')
+    plt.savefig('kyle_spending.png', bbox_inches='tight')
 
 
 analysis()
