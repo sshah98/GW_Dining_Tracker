@@ -16,7 +16,12 @@ import matplotlib
 import matplotlib.pyplot as plt
 import matplotlib.pylab as pylab
 
-plt.style.use('ggplot')
+import datetime as dt
+
+from sklearn.linear_model import LinearRegression
+
+
+plt.style.use('fivethirtyeight')
 
 
 def login():
@@ -94,13 +99,12 @@ def login():
 
     df = df.rename(columns={0: 'Account', 1: 'Date',
                             2: 'Time', 3: 'Vendor', 4: 'Price'})
-                
 
-    myfile = '%s' %myuser.strip('@gwu.edu') + '_gworld_dollars.csv'         
+    myfile = '%s' % myuser.strip('@gwu.edu') + '_gworld_dollars.csv'
     df.to_csv(myfile)
 
 
-login()
+# login()
 
 def analysis():
 
@@ -109,21 +113,38 @@ def analysis():
     df = df.sort_values(by='Date')
     df.set_index('Date', inplace=True)
 
-    df1 = df.truncate(before='2018-01-14')['Price'].sum()
-    
-    df2 = df.truncate(before='2018-01-16')['Price']
-    print(df2)
+    df1 = df.truncate(before='2018-01-06')
+    df1['CurrentVal'] = 0
+    # df1['Current Value'] = df1['Price'] - df1['Current Value']
+    df1.CurrentVal = 1350 * 2 - df1.Price.cumsum()
 
-    # fig = plt.figure()
-    # df1 = df1.plot(kind='line', style='*', figsize=(16, 12))
-    # plt.xticks(rotation='vertical')
-    # 
-    # df1.set_xlabel("Date")
-    # df1.set_ylabel("Price")
-    
-    # fig.savefig('benspending.png', dpi=fig.dpi)
+    df1.rename(columns={'Unnamed: 0': 'Count'}, inplace=True)
+    del df1['Count']
 
-    # plt.show()
+    print(df1.head())
+
+    plt.figure()
+
+    x = df1.index
+    y = df1['CurrentVal']
+
+    plt.plot(x, y, 'ko')
+
+    df1.index = pd.to_datetime(df1.index)
+    df1.index = df1.index.map(dt.datetime.toordinal)
+
+    x1 = df1.index
+    m, b = np.polyfit(x1, y, 1)
+    plt.plot(x1, m * x1 + b, '-')
+
+    plt.ylim(ymin=0)
+    plt.xticks(rotation='vertical')
+    plt.xlabel('Date')
+    plt.ylabel('CurrentVal')
+
+    plt.show()
+
+    # plt.savefig('spending.png', bbox_inches='tight')
 
 
-# analysis()
+analysis()
