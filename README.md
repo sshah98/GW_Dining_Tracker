@@ -2,7 +2,7 @@
 
 ## The goal is to provide a way for students to input their current balance. The program will track user spending with input of the place they bought and the money they spent
 
-(will need to be changed later because many students don't actually get receipts or care how much money they spent at one time)
+-   (will need to be changed later because many students don't actually get receipts or care how much money they spent at one time)
 
 The application starts off with the input value of the current balance of the student
 
