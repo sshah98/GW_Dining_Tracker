@@ -20,6 +20,7 @@ import datetime as dt
 
 from sklearn.linear_model import LinearRegression
 
+from scipy.stats import linregress
 
 plt.style.use('fivethirtyeight')
 
@@ -136,13 +137,17 @@ def analysis():
     x1 = df1.index
     m, b = np.polyfit(x1, y, 1)
     plt.plot(x1, m * x1 + b, '-')
+    
+    predicted_date = int(-b / m)
+    predicted_date = dt.datetime.fromordinal(predicted_date).date()
+    print("Predicted to run out: " + str(predicted_date))
 
     plt.ylim(ymin=0)
     plt.xticks(rotation='vertical')
     plt.xlabel('Date')
     plt.ylabel('CurrentVal')
 
-    plt.show()
+    # plt.show()
 
     # plt.savefig('spending.png', bbox_inches='tight')
 
