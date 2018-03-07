@@ -27,7 +27,7 @@ plt.style.use('fivethirtyeight')
 
 def login():
 
-    myuser = input('Enter netID (no gwu.edu): ') + '@gwu.edu'
+    myuser = input('Enter netID (no gwu.edu): ')
     mypass = getpass.getpass('Password: ')
 
     baseurl = "https://get.cbord.com/gwu/full/login.php"
@@ -110,7 +110,7 @@ def login():
 def analysis():
 
     # read csv file and format for proper usage
-    df = pd.read_csv('suraj98_gworld_dollars.csv', parse_dates=['Date'])
+    df = pd.read_csv('krood20@gwmail_gworld_dollars.csv', parse_dates=['Date'])
     df = df.sort_values(by='Date')
     df.set_index('Date', inplace=True)
 
@@ -136,6 +136,9 @@ def analysis():
 
     x1 = df1.index
     m, b = np.polyfit(x1, y, 1)
+    
+    print(m)
+    
     plt.plot(x1, m * x1 + b, '-')
     
     predicted_date = int(-b / m)
@@ -147,9 +150,9 @@ def analysis():
     plt.xlabel('Date')
     plt.ylabel('CurrentVal')
 
-    # plt.show()
+    plt.show()    
 
-    # plt.savefig('spending.png', bbox_inches='tight')
+    # plt.savefig('kyle_spending.png', bbox_inches='tight')
 
 
 analysis()
