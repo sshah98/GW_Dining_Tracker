@@ -17,5 +17,11 @@ The application starts off with the input value of the current balance of the st
 2. See what other statistical analysis and information can be understood from the data
 
 -   Intermediary steps here
+-   Intermediary steps here
+-   Get data about the average amount spent per day
+-   Data about how much you spend per week
+-   Get data about when you will run out of gworld based on current spending     habits
+-   Get data about places you spend the most money
+-   Figure out other key things that could help users 
 
 3.  Implement into a Django REST API so that other people can start accessing their information 
