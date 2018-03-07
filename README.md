@@ -25,3 +25,4 @@ The application starts off with the input value of the current balance of the st
 -   Figure out other key things that could help users 
 
 3.  Implement into a Django REST API so that other people can start accessing their information 
+4.  Figure out how to convert the rest api to a web interface in the beginning so that users can see
