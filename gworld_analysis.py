@@ -26,7 +26,11 @@ plt.style.use('fivethirtyeight')
 
 myuser = input('Enter username: ')
 mypass = getpass.getpass('Enter password: ')
+
 baseurl = "https://get.cbord.com/gwu/full/login.php"
+
+user = myuser.strip('@gwmail.gwu.edu')
+
 
 class DiningDollars(object):
 
@@ -60,6 +64,7 @@ class DiningDollars(object):
         return soup
 
     def htmlToDataFrame(self):
+
         soup = self.loginToAccount()
 
         table = soup.find(
@@ -103,12 +108,14 @@ class DiningDollars(object):
         df = df.rename(columns={0: 'Account', 1: 'Date',
                                 2: 'Time', 3: 'Vendor', 4: 'Price'})
 
-        myfile = '%s' % myuser.strip('@gwmail.gwu.edu') + '_gworld_dollars.csv'
+        myfile = '%s' % (user) + '_gworld_dollars.csv'
         df.to_csv(myfile)
+        return myfile
 
     def analysis(self):
 
-        df = pd.read_csv('suraj98_gworld_dollars.csv', parse_dates=['Date'])
+        df = pd.read_csv('%s' % (myuser.strip('@gwmail.gwu.edu')) +
+                         '_gworld_dollars.csv', parse_dates=['Date'])
         df = df.sort_values(by='Date')
         df.set_index('Date', inplace=True)
 
@@ -144,11 +151,10 @@ class DiningDollars(object):
         plt.xlabel('Date')
         plt.ylabel('CurrentVal')
 
+        plt.savefig('%s' % (user) + '_spending.png', bbox_inches='tight')
         plt.show()
-
-        # plt.savefig('kyle_spending.png', bbox_inches='tight')
 
 
 myobj = DiningDollars(myuser, mypass)
 myobj.htmlToDataFrame()
-
+myobj.analysis()
