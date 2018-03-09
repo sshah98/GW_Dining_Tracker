@@ -12,9 +12,11 @@ The application starts off with the input value of the current balance of the st
 -   CSV file containing prices of every transaction in one's get history from present day to 6 months ago
 -   python file scrapes GET-Cbord website for data, puts into DataFrame and then plots line with regression
 
+-   Focus on predicting by date, when dining dollars will run out 
+
 ### _To Do_:
-1. Focus on predicting by date, when dining dollars will run out 
-2. See what other statistical analysis and information can be understood from the data
+
+1.  See what other statistical analysis and information can be understood from the data
 
 -   Intermediary steps here
 -   Intermediary steps here

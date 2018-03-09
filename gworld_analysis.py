@@ -7,20 +7,18 @@ from selenium.webdriver.chrome.options import Options
 # from selenium.webdriver.support.ui import Select
 # from selenium.common.exceptions import NoSuchElementException
 
-# import pickle
 import getpass
 
 import pandas as pd
 import numpy as np
-# import seaborn as sns
 
 import matplotlib
 import matplotlib.pyplot as plt
 import matplotlib.pylab as pylab
 import datetime as dt
 
-from sklearn.linear_model import LinearRegression
-from scipy.stats import linregress
+# from sklearn.linear_model import LinearRegression
+# from scipy.stats import linregress
 
 plt.style.use('fivethirtyeight')
 
@@ -41,12 +39,12 @@ class DiningDollars(object):
     def loginToAccount(self):
         options = Options()
         options.add_argument('--headless')
-        # Last I checked this was necessary.
         options.add_argument('--disable-gpu')
         mydriver = webdriver.Chrome(
             executable_path='/usr/local/bin/chromedriver', chrome_options=options)
         mydriver.get(baseurl)
 
+        print("Logging in...")
         username = mydriver.find_element_by_id("login_username_text")
         password = mydriver.find_element_by_id("login_password_text")
 
@@ -74,7 +72,9 @@ class DiningDollars(object):
         rows = list()
         for row in table.findAll("tr"):
             rows.append(row)
-
+            
+        print("Extracting spending history...")
+        
         # removes commas and more necessary formatting
         items = list(table.stripped_strings)
         items = [elem for elem in items if elem.strip(",")]
@@ -107,15 +107,19 @@ class DiningDollars(object):
 
         df = df.rename(columns={0: 'Account', 1: 'Date',
                                 2: 'Time', 3: 'Vendor', 4: 'Price'})
+                                
+        print("Saving to csv file...")
 
         myfile = '%s' % (user) + '_gworld_dollars.csv'
         df.to_csv(myfile)
+
         return myfile
 
     def analysis(self):
 
-        df = pd.read_csv('%s' % (myuser.strip('@gwmail.gwu.edu')) +
-                         '_gworld_dollars.csv', parse_dates=['Date'])
+        print("Reading information...")
+        df = pd.read_csv('%s' % (user) + '_gworld_dollars.csv',
+                         parse_dates=['Date'])
         df = df.sort_values(by='Date')
         df.set_index('Date', inplace=True)
 
@@ -132,6 +136,8 @@ class DiningDollars(object):
         x = df1.index
         y = df1['CurrentVal']
 
+        print("Plotting and calculating stats...")
+        
         plt.plot(x, y, 'ko')
 
         df1.index = pd.to_datetime(df1.index)
@@ -146,6 +152,8 @@ class DiningDollars(object):
         predicted_date = dt.datetime.fromordinal(predicted_date).date()
         print("Predicted to run out: " + str(predicted_date))
 
+        print("Spending on average per day: $" + str(round(abs(m), 3)))
+
         plt.ylim(ymin=0)
         plt.xticks(rotation='vertical')
         plt.xlabel('Date')
@@ -157,4 +165,4 @@ class DiningDollars(object):
 
 myobj = DiningDollars(myuser, mypass)
 myobj.htmlToDataFrame()
-myobj.analysis()
+# myobj.analysis()
