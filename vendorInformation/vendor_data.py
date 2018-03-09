@@ -5,7 +5,7 @@ from openpyxl import load_workbook
 import pandas as pd
 
 # simple code to scrape the dining website for the websites of all the vendors
-def get_urls():
+def getURLS():
         
     from bs4 import BeautifulSoup
     import urllib.request
@@ -22,4 +22,9 @@ def get_urls():
     writer = pd.ExcelWriter('output.xlsx')
     df.to_excel(writer, 'Sheet1')
     writer.save()
+    
+    
+def vendorInfo():
+    
+    
 

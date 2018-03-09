@@ -152,7 +152,7 @@ class DiningDollars(object):
         predicted_date = dt.datetime.fromordinal(predicted_date).date()
         print("Predicted to run out: " + str(predicted_date))
 
-        print("Spending on average per day: $" + str(round(abs(m), 3)))
+        print("Spending on average per day: $" + str(round(abs(m), 2)))
 
         plt.ylim(ymin=0)
         plt.xticks(rotation='vertical')
@@ -164,5 +164,5 @@ class DiningDollars(object):
 
 
 myobj = DiningDollars(myuser, mypass)
-myobj.htmlToDataFrame()
-# myobj.analysis()
+# myobj.htmlToDataFrame()
+myobj.analysis()
