@@ -28,3 +28,13 @@ The application starts off with the input value of the current balance of the st
 
 3.  Implement into a Django REST API so that other people can start accessing their information 
 4.  Figure out how to convert the rest api to a web interface in the beginning so that users can see
+
+
+### _Next Steps_:
+
+Make a django/flask app -- figure that out
+Login page that user uses with same user and password as GET App
+One single page that shows Average spent in the last week, average spending per day
+Broken by category - food, printing, laundry, snacks(gallery market, etc)
+
+
