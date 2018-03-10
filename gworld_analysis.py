@@ -1,14 +1,4 @@
-from bs4 import BeautifulSoup
-
-from selenium import webdriver
-from selenium.webdriver.chrome.options import Options
-
-# from selenium.webdriver.common.by import By
-# from selenium.webdriver.support.ui import Select
-# from selenium.common.exceptions import NoSuchElementException
-
 import getpass
-
 import pandas as pd
 import numpy as np
 
@@ -17,17 +7,21 @@ import matplotlib.pyplot as plt
 import matplotlib.pylab as pylab
 import datetime as dt
 
-# from sklearn.linear_model import LinearRegression
-# from scipy.stats import linregress
+from bs4 import BeautifulSoup
+from selenium import webdriver
+from selenium.webdriver.chrome.options import Options
+
+# from selenium.webdriver.common.by import By
+# from selenium.webdriver.support.ui import Select
+# from selenium.common.exceptions import NoSuchElementException
+
 
 plt.style.use('fivethirtyeight')
 
-myuser = input('Enter username: ')
-mypass = getpass.getpass('Enter password: ')
-
-baseurl = "https://get.cbord.com/gwu/full/login.php"
-
-user = myuser.strip('@gwmail.gwu.edu')
+# myuser = input('Enter username: ')
+# mypass = getpass.getpass('Enter password: ')
+# baseurl = "https://get.cbord.com/gwu/full/login.php"
+# user = myuser.strip('@gwmail.gwu.edu')
 
 
 class DiningDollars(object):
@@ -72,9 +66,9 @@ class DiningDollars(object):
         rows = list()
         for row in table.findAll("tr"):
             rows.append(row)
-            
+
         print("Extracting spending history...")
-        
+
         # removes commas and more necessary formatting
         items = list(table.stripped_strings)
         items = [elem for elem in items if elem.strip(",")]
@@ -107,7 +101,7 @@ class DiningDollars(object):
 
         df = df.rename(columns={0: 'Account', 1: 'Date',
                                 2: 'Time', 3: 'Vendor', 4: 'Price'})
-                                
+
         print("Saving to csv file...")
 
         myfile = '%s' % (user) + '_gworld_dollars.csv'
@@ -137,7 +131,7 @@ class DiningDollars(object):
         y = df1['CurrentVal']
 
         print("Plotting and calculating stats...")
-        
+
         plt.plot(x, y, 'ko')
 
         df1.index = pd.to_datetime(df1.index)
@@ -162,7 +156,43 @@ class DiningDollars(object):
         plt.savefig('%s' % (user) + '_spending.png', bbox_inches='tight')
         plt.show()
 
+    def categoricalData(self):
 
-myobj = DiningDollars(myuser, mypass)
-myobj.htmlToDataFrame()
-myobj.analysis()
+        df = pd.read_csv('%s' % (user) + '_gworld_dollars.csv',
+                         parse_dates=['Date'])
+
+        df.rename(columns={'Unnamed: 0': 'Count'}, inplace=True)
+        del df['Count']
+
+        # df = df.groupby([''])
+        # print(df.head())
+
+
+# myobj = DiningDollars(myuser, mypass)
+# myobj.htmlToDataFrame()
+# myobj.analysis()
+# myobj.categoricalData()
+
+# TODO: figure out statistics on vendor information, places i buy the most, group by category
+
+
+df = pd.read_csv('suraj98_gworld_dollars.csv')
+df.rename(columns={'Unnamed: 0': 'Count'}, inplace=True)
+del df['Count']
+
+df = df.sort_values(by='Date')
+
+df = df[(df['Date'] >= '2018-01-06')]
+
+df1 = df.groupby(['Date', 'Vendor']).count()['Price']
+
+print(df1)
+
+
+
+
+
+
+
+
+
