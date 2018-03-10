@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <h2>Welcome, {{ user.get_full_name }} </h2>
+    
+    <p>
+      Your username is: <b>{{ user.username }}</b>
+      
+    </p>
+  <p>Your email address: <b>{{ user.email }}</b></p>
+{% endblock %}
