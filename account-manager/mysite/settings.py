@@ -88,9 +88,9 @@ DATABASES = {
     },
 }
 
-PASSWORD_HASHERS = (
-    'django.contrib.auth.hashers.UnsaltedMD5PasswordHasher',
-)
+# PASSWORD_HASHERS = (
+#     'django.contrib.auth.hashers.UnsaltedMD5PasswordHasher',
+# )
 
 
 # Internationalization
