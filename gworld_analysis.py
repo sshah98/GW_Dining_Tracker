@@ -164,5 +164,5 @@ class DiningDollars(object):
 
 
 myobj = DiningDollars(myuser, mypass)
-# myobj.htmlToDataFrame()
+myobj.htmlToDataFrame()
 myobj.analysis()
