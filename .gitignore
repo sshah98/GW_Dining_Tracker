@@ -4,3 +4,6 @@ ghostdriver.log
 diningApp/__pycache__/
 diningApp/app.db
 diningApp/migrations/
+diningApp/app/__pycache__/
+diningApp/*.csv
+diningApp/*spending.png

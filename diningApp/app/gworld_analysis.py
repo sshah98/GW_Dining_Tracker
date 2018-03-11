@@ -20,7 +20,7 @@ plt.style.use('fivethirtyeight')
 
 # myuser = input('Enter username: ')
 # mypass = getpass.getpass('Enter password: ')
-# baseurl = "https://get.cbord.com/gwu/full/login.php"
+baseurl = "https://get.cbord.com/gwu/full/login.php"
 # user = myuser.strip('@gwmail.gwu.edu')
 
 
@@ -42,8 +42,8 @@ class DiningDollars(object):
         username = mydriver.find_element_by_id("login_username_text")
         password = mydriver.find_element_by_id("login_password_text")
 
-        username.send_keys(myuser)
-        password.send_keys(mypass)
+        username.send_keys(self.login)
+        password.send_keys(self.password)
 
         mydriver.find_element_by_name("submit").click()
         mydriver.get("https://get.cbord.com/gwu/full/history.php")
@@ -104,7 +104,7 @@ class DiningDollars(object):
 
         print("Saving to csv file...")
 
-        myfile = '%s' % (user) + '_gworld_dollars.csv'
+        myfile = '%s' % (self.login.strip('@gwmail.gwu.edu')) + '_gworld_dollars.csv'
         df.to_csv(myfile)
 
         return myfile
@@ -112,7 +112,7 @@ class DiningDollars(object):
     def analysis(self):
 
         print("Reading information...")
-        df = pd.read_csv('%s' % (user) + '_gworld_dollars.csv',
+        df = pd.read_csv('%s' % (self.login.strip('@gwmail.gwu.edu')) + '_gworld_dollars.csv',
                          parse_dates=['Date'])
         df = df.sort_values(by='Date')
         df.set_index('Date', inplace=True)
@@ -153,12 +153,12 @@ class DiningDollars(object):
         plt.xlabel('Date')
         plt.ylabel('CurrentVal')
 
-        plt.savefig('%s' % (user) + '_spending.png', bbox_inches='tight')
-        plt.show()
+        plt.savefig('%s' % (self.login.strip('@gwmail.gwu.edu')) + '_spending.png', bbox_inches='tight')
+        # plt.show()
 
     def categoricalData(self):
 
-        df = pd.read_csv('%s' % (user) + '_gworld_dollars.csv',
+        df = pd.read_csv('%s' % (self.login) + '_gworld_dollars.csv',
                          parse_dates=['Date'])
 
         df.rename(columns={'Unnamed: 0': 'Count'}, inplace=True)
@@ -169,24 +169,24 @@ class DiningDollars(object):
 
 
 # myobj = DiningDollars(myuser, mypass)
-# myobj.htmlToDataFrame()
+# print(myobj.htmlToDataFrame())
 # myobj.analysis()
 # myobj.categoricalData()
 
 # TODO: figure out statistics on vendor information, places i buy the most, group by category
 
 
-df = pd.read_csv('suraj98_gworld_dollars.csv')
-df.rename(columns={'Unnamed: 0': 'Count'}, inplace=True)
-del df['Count']
-
-df = df.sort_values(by='Date')
-
-df = df[(df['Date'] >= '2018-01-06')]
-
-df1 = df.groupby(['Date', 'Vendor']).count()['Price']
-
-print(df1)
+# df = pd.read_csv('suraj98_gworld_dollars.csv')
+# df.rename(columns={'Unnamed: 0': 'Count'}, inplace=True)
+# del df['Count']
+# 
+# df = df.sort_values(by='Date')
+# 
+# df = df[(df['Date'] >= '2018-01-06')]
+# 
+# df1 = df.groupby(['Date', 'Vendor']).count()['Price']
+# 
+# print(df1)
 
 
 
