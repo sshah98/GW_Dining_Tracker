@@ -1,3 +1,6 @@
 geckodriver.log
 ghostdriver.log
 /env
+diningApp/__pycache__/
+diningApp/app.db
+
