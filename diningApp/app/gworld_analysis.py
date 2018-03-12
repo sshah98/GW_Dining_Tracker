@@ -17,8 +17,8 @@ from selenium.webdriver.chrome.options import Options
 
 plt.style.use('fivethirtyeight')
 
-# myuser = input('Enter username: ')
-# mypass = getpass.getpass('Enter password: ')
+myuser = input('Enter username: ')
+mypass = getpass.getpass('Enter password: ')
 baseurl = "https://get.cbord.com/gwu/full/login.php"
 # user = myuser.strip('@gwmail.gwu.edu')
 
@@ -30,21 +30,22 @@ class DiningDollars(object):
         self.password = password
 
     def loginToAccount(self):
+        
         options = Options()
         options.add_argument('--headless')
         options.add_argument('--disable-gpu')
+        options.add_argument("--disable-extensions")
+        
+
         mydriver = webdriver.Chrome(
             executable_path='/usr/local/bin/chromedriver', chrome_options=options)
         mydriver.get(baseurl)
 
         print("Logging in...")
-        username = mydriver.find_element_by_id("login_username_text")
-        password = mydriver.find_element_by_id("login_password_text")
-
-        username.send_keys(self.login)
-        password.send_keys(self.password)
-
+        mydriver.find_element_by_id("login_username_text").send_keys(self.login)
+        mydriver.find_element_by_id("login_password_text").send_keys(self.password)
         mydriver.find_element_by_name("submit").click()
+        
         mydriver.get("https://get.cbord.com/gwu/full/history.php")
 
         html = mydriver.page_source
@@ -53,6 +54,31 @@ class DiningDollars(object):
         mydriver.close()
 
         return soup
+        
+    def dailyTransactions(self):
+        options = Options()
+        options.add_argument('--headless')
+        options.add_argument('--disable-gpu')
+        options.add_argument("--disable-extensions")
+        
+
+        mydriver = webdriver.Chrome(
+            executable_path='/usr/local/bin/chromedriver', chrome_options=options)
+        mydriver.get(baseurl)
+
+        print("Logging in...")
+        mydriver.find_element_by_id("login_username_text").send_keys(self.login)
+        mydriver.find_element_by_id("login_password_text").send_keys(self.password)
+        mydriver.find_element_by_name("submit").click()
+        
+        mydriver.get("https://get.cbord.com/gwu/full/funds_home.php")
+        html = mydriver.page_source
+        soup = BeautifulSoup(html, "lxml")
+
+        mydriver.close()
+
+        return soup
+        
 
     def htmlToDataFrame(self):
 
@@ -168,12 +194,11 @@ class DiningDollars(object):
 
 
 # myobj = DiningDollars(myuser, mypass)
-# print(myobj.htmlToDataFrame())
+# myobj.htmlToDataFrame()
 # myobj.analysis()
 # myobj.categoricalData()
 
 # TODO: figure out statistics on vendor information, places i buy the most, group by category
-
 
 # df = pd.read_csv('suraj98_gworld_dollars.csv')
 # df.rename(columns={'Unnamed: 0': 'Count'}, inplace=True)
