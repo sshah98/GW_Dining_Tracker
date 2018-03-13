@@ -17,8 +17,8 @@ from selenium.webdriver.chrome.options import Options
 
 plt.style.use('fivethirtyeight')
 
-myuser = input('Enter username: ')
-mypass = getpass.getpass('Enter password: ')
+# myuser = input('Enter username: ')
+# mypass = getpass.getpass('Enter password: ')
 baseurl = "https://get.cbord.com/gwu/full/login.php"
 # user = myuser.strip('@gwmail.gwu.edu')
 
@@ -180,6 +180,7 @@ class DiningDollars(object):
 
         plt.savefig('%s' % (self.login.strip('@gwmail.gwu.edu')) + '_spending.png', bbox_inches='tight')
         # plt.show()
+        return str(predicted_date)
 
     def categoricalData(self):
 
