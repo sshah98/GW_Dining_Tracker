@@ -5,7 +5,7 @@ from app import app, db
 from app.forms import LoginForm, RegistrationForm, EditProfileForm
 from app.models import User
 from datetime import datetime
-# from app.gworld_analysis import DiningDollars
+from app.gworld_analysis import DiningDollars
 
 
 
@@ -21,24 +21,25 @@ def before_request():
 @login_required
 def index():
     
-    # myobj = DiningDollars(current_user.email, current_user.password)
-    # myobj.htmlToDataFrame()
-    # myobj.analysis()
+    
+    myobj = DiningDollars(current_user.email, current_user.password)
+    myobj.htmlToDataFrame()
+    date = myobj.analysis()
+    
+    
+    # posts = [
+    #     {
+    #         'author': {'username': 'John'},
+    #         'body': 'Beautiful day in Portland!'
+    #     },
+    #     {
+    #         'author': {'username': 'Susan'},
+    #         'body': 'The Avengers movie was so cool!'
+    #     }
+    # 
+    # ]
 
-
-    posts = [
-        {
-            'author': {'username': 'John'},
-            'body': 'Beautiful day in Portland!'
-        },
-        {
-            'author': {'username': 'Susan'},
-            'body': 'The Avengers movie was so cool!'
-        }
-
-    ]
-
-    return render_template('index.html', title='Home', posts=posts)
+    return render_template('index.html', title='Home')
 
 
 @app.route('/login', methods=['GET', 'POST'])

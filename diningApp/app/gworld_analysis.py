@@ -7,12 +7,15 @@ import matplotlib.pyplot as plt
 import matplotlib.pylab as pylab
 import datetime as dt
 
+import os
+
+
 from bs4 import BeautifulSoup
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 
 # from selenium.webdriver.common.by import By
-# from selenium.webdriver.support.ui import Select
+# from selenium.webdriver.support.ui import NoSuchElementException
 # from selenium.common.exceptions import NoSuchElementException
 
 plt.style.use('fivethirtyeight')
@@ -30,22 +33,23 @@ class DiningDollars(object):
         self.password = password
 
     def loginToAccount(self):
-        
+
         options = Options()
         options.add_argument('--headless')
         options.add_argument('--disable-gpu')
         options.add_argument("--disable-extensions")
-        
 
         mydriver = webdriver.Chrome(
             executable_path='/usr/local/bin/chromedriver', chrome_options=options)
         mydriver.get(baseurl)
 
-        print("Logging in...")
-        mydriver.find_element_by_id("login_username_text").send_keys(self.login)
-        mydriver.find_element_by_id("login_password_text").send_keys(self.password)
+        # print("Logging in...")
+        mydriver.find_element_by_id(
+            "login_username_text").send_keys(self.login)
+        mydriver.find_element_by_id(
+            "login_password_text").send_keys(self.password)
         mydriver.find_element_by_name("submit").click()
-        
+
         mydriver.get("https://get.cbord.com/gwu/full/history.php")
 
         html = mydriver.page_source
@@ -54,23 +58,24 @@ class DiningDollars(object):
         mydriver.close()
 
         return soup
-        
+
     def dailyTransactions(self):
         options = Options()
         options.add_argument('--headless')
         options.add_argument('--disable-gpu')
         options.add_argument("--disable-extensions")
-        
 
         mydriver = webdriver.Chrome(
             executable_path='/usr/local/bin/chromedriver', chrome_options=options)
         mydriver.get(baseurl)
 
         print("Logging in...")
-        mydriver.find_element_by_id("login_username_text").send_keys(self.login)
-        mydriver.find_element_by_id("login_password_text").send_keys(self.password)
+        mydriver.find_element_by_id(
+            "login_username_text").send_keys(self.login)
+        mydriver.find_element_by_id(
+            "login_password_text").send_keys(self.password)
         mydriver.find_element_by_name("submit").click()
-        
+
         mydriver.get("https://get.cbord.com/gwu/full/funds_home.php")
         html = mydriver.page_source
         soup = BeautifulSoup(html, "lxml")
@@ -78,7 +83,6 @@ class DiningDollars(object):
         mydriver.close()
 
         return soup
-        
 
     def htmlToDataFrame(self):
 
@@ -130,15 +134,18 @@ class DiningDollars(object):
         print("Saving to csv file...")
 
         myfile = '%s' % (self.login.strip('@gwmail.gwu.edu')) + '_gworld_dollars.csv'
-        df.to_csv(myfile)
+        csv_path = 'files/SpendingCSV/'
+        df.to_csv(os.path.join(csv_path, myfile))
 
         return myfile
 
     def analysis(self):
 
+        myfile = '%s' % (self.login.strip('@gwmail.gwu.edu')) + '_gworld_dollars.csv'
+        csv_path = 'files/SpendingCSV/'
+
         print("Reading information...")
-        df = pd.read_csv('%s' % (self.login.strip('@gwmail.gwu.edu')) + '_gworld_dollars.csv',
-                         parse_dates=['Date'])
+        df = pd.read_csv(os.path.join(csv_path, myfile), parse_dates=['Date'])
         df = df.sort_values(by='Date')
         df.set_index('Date', inplace=True)
 
@@ -178,7 +185,10 @@ class DiningDollars(object):
         plt.xlabel('Date')
         plt.ylabel('CurrentVal')
 
-        plt.savefig('%s' % (self.login.strip('@gwmail.gwu.edu')) + '_spending.png', bbox_inches='tight')
+        image_path = 'files/Plots/'
+        myfile = '%s' % (self.login.strip('@gwmail.gwu.edu')) + '_spending.png'
+
+        plt.savefig(os.path.join(image_path, myfile), bbox_inches='tight')
         # plt.show()
         return str(predicted_date)
 
@@ -204,20 +214,11 @@ class DiningDollars(object):
 # df = pd.read_csv('suraj98_gworld_dollars.csv')
 # df.rename(columns={'Unnamed: 0': 'Count'}, inplace=True)
 # del df['Count']
-# 
+#
 # df = df.sort_values(by='Date')
-# 
+#
 # df = df[(df['Date'] >= '2018-01-06')]
-# 
+#
 # df1 = df.groupby(['Date', 'Vendor']).count()['Price']
-# 
+#
 # print(df1)
-
-
-
-
-
-
-
-
-
