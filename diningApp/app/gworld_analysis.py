@@ -211,14 +211,12 @@ class DiningDollars(object):
 
 # TODO: figure out statistics on vendor information, places i buy the most, group by category
 
-# df = pd.read_csv('suraj98_gworld_dollars.csv')
+# df = pd.read_csv('../app/files/SpendingCSV/suraj98_gworld_dollars.csv')
 # df.rename(columns={'Unnamed: 0': 'Count'}, inplace=True)
 # del df['Count']
-#
+# 
 # df = df.sort_values(by='Date')
-#
+# 
 # df = df[(df['Date'] >= '2018-01-06')]
-#
-# df1 = df.groupby(['Date', 'Vendor']).count()['Price']
-#
-# print(df1)
+# print(df.head())
+
