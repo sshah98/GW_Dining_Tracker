@@ -23,7 +23,7 @@ plt.style.use('fivethirtyeight')
 myuser = input('Enter username: ')
 mypass = getpass.getpass('Enter password: ')
 baseurl = "https://get.cbord.com/gwu/full/login.php"
-user = myuser.strip('@gwmail.gwu.edu')
+user = myuser.strip('@gwmail.gwu.edu')  
 
 
 class DiningDollars(object):
