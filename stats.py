@@ -1,75 +1,55 @@
+import math
 import sqlite3
-
+import datetime
 import pandas as pd
 import numpy as np
-
-import matplotlib
-import matplotlib.pyplot as plt
-import matplotlib.pylab as pylab
-import datetime as dt
-
-
-import math
-import datetime
-import pickle
 import matplotlib.pyplot as plt
 
 from sklearn import preprocessing, cross_validation, svm
 from sklearn.linear_model import LinearRegression
 from matplotlib import style
 
+from sklearn.cross_validation import train_test_split
+import statsmodels.api as sm
+
 style.use('ggplot')
 
 initial_gworld = 1350
+database = 'spending_history.db'
 
-DATABASE = 'spending_history.db'
-
-db = sqlite3.connect(DATABASE)
+db = sqlite3.connect(database)
 df = pd.read_sql_query("SELECT * FROM history", db)
 
+# formatting and making information from database clean
 df['currentval'] = np.nan
 df['currentval'] = df['price'] - df['currentval']
 df.currentval = initial_gworld + df.price.cumsum()
-
 df['datetime'] = pd.to_datetime(df['date'].apply(str) + ' ' + df['time'])
+# df['date'] = pd.to_datetime(df['date']).dt.date
 df.set_index('count', inplace=True)
 
 
-print(df.head())
-
-df.plot(x='datetime', y='currentval')
+plt.scatter(df['datetime'].tolist(), df['currentval'])
 plt.xlabel('Date')
-plt.ylabel('Price')
+plt.ylabel('GWorld')
+
+
 plt.show()
 
 
+# df['date'] = pd.to_datetime(df['date'])
+# df['date_delta'] = (df['date'] - df['date'].min())  / np.timedelta64(1,'D')
+# 
+# xdat = df['date_delta']
+# xdat = sm.add_constant(xdat)
+# xdat = sm.add_constant(xdat)
+# ydat = df['currentval']
+# 
+# print(ydat)
+# 
+# model = sm.OLS(ydat,xdat)
+# result = model.fit()
+# print(result.params)
+# print(result.summary())
+# print('Predicted values: ', result.predict())
 
-# x = df.index
-# y = df['CurrentVal']
-#
-# print("Plotting and calculating stats...")
-#
-# plt.scatter(x, y)
-#
-#
-# df.index = pd.to_datetime(df.index)
-# df.index = df.index.map(dt.datetime.toordinal)
-#
-# x1 = df.index
-# m, b = np.polyfit(x1, y, 1)
-#
-# plt.plot(x1, m * x1 + b, '-')
-#
-# predicted_date = int(-b / m)
-# predicted_date = dt.datetime.fromordinal(predicted_date).date()
-# print("Predicted to run out: " + str(predicted_date))
-#
-# print("Spending on average per day: $" + str(round(abs(m), 2)))
-#
-# plt.ylim(ymin=0)
-# plt.xticks(rotation='vertical')
-# plt.xlabel('Date')
-# plt.ylabel('CurrentVal')
-
-
-# plt.show()
