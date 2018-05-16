@@ -1,1 +1,1 @@
-CREATE TABLE history(date INTEGER, account TEXT, time INTEGER, vendor TEXT, price REAL);
+CREATE TABLE history(count INTEGER PRIMARY KEY AUTOINCREMENT, date INTEGER, account TEXT, time INTEGER, vendor TEXT, price REAL);

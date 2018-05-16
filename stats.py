@@ -32,7 +32,8 @@ df['currentval'] = df['price'] - df['currentval']
 df.currentval = initial_gworld + df.price.cumsum()
 
 df['datetime'] = pd.to_datetime(df['date'].apply(str) + ' ' + df['time'])
-# df.set_index('datetime', inplace=True)
+df.set_index('count', inplace=True)
+
 
 print(df.head())
 
