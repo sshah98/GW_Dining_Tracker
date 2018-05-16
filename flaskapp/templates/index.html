@@ -1,0 +1,35 @@
+{% extends "layout.html" %} {% block title %}Home {% endblock %} {% block content %}
+
+
+<div class="container" style="width:100%;">
+
+  <div class="row-center">
+    {% if session['logged_in'] %} {% if data %}
+    <h3>{{data}}</h3> {% else %}
+
+    <h3><a href="/logout">Logout</a></h3>
+    
+
+    <h3>Information about dining app</h3> 
+    
+    <h3>put it here</h3>
+    
+    
+    {% endif %} 
+    
+    {% else %}
+    
+    <h3>Login to access data!</h3>
+
+    <h3><a href="/login">Login</a></h3>
+    <h3><a href="/register">Register</a></h3> 
+    
+    {% endif %}
+  </div>
+
+</div>
+
+
+
+
+{% endblock %}

@@ -33,23 +33,16 @@ plt.scatter(df['datetime'].tolist(), df['currentval'])
 plt.xlabel('Date')
 plt.ylabel('GWorld')
 
-
 plt.show()
-
 
 # df['date'] = pd.to_datetime(df['date'])
 # df['date_delta'] = (df['date'] - df['date'].min())  / np.timedelta64(1,'D')
-# 
 # xdat = df['date_delta']
 # xdat = sm.add_constant(xdat)
 # xdat = sm.add_constant(xdat)
 # ydat = df['currentval']
-# 
-# print(ydat)
-# 
 # model = sm.OLS(ydat,xdat)
 # result = model.fit()
 # print(result.params)
 # print(result.summary())
 # print('Predicted values: ', result.predict())
-
