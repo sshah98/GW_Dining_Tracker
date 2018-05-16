@@ -38,3 +38,22 @@ One single page that shows Average spent in the last week, average spending per 
 Broken by category - food, printing, laundry, snacks(gallery market, etc)
 
 
+
+
+http://chromedriver.chromium.org/downloads
+
+
+
+
+
+
+
+
+use a flask app, take the csv data and display it
+have a login which is the one to use to login to get the data
+
+then for analysis, use linearregression
+
+
+
+

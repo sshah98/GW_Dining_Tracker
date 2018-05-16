@@ -1,0 +1,1 @@
+CREATE TABLE history(date INTEGER, account TEXT, time INTEGER, vendor TEXT, price REAL);
