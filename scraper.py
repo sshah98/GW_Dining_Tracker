@@ -8,17 +8,12 @@ import numpy as np
 from bs4 import BeautifulSoup
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
-
-from pandas.io import sql
-
 from sqlalchemy import create_engine
 
 
-# myuser = input('Enter username: ')
-# mypass = getpass.getpass('Enter password: ')
-
+myuser = input('Enter username: ')
+mypass = getpass.getpass('Enter password: ')
 baseurl = "https://get.cbord.com/gwu/full/login.php"
-user = myuser.strip('@gwmail.gwu.edu')
 
 
 def spending_history_webpage():
@@ -74,13 +69,13 @@ def webpage_to_dataframe():
     df[2] = pd.to_datetime(df[2], errors='raise')
     df[2] = df[2] = pd.Series([val.time() for val in df[2]])
 
-    df = df.rename(columns={0: 'Account', 1: 'Date',
-                            2: 'Time', 3: 'Vendor', 4: 'Price'})
+    df = df.rename(columns={0: 'account', 1: 'date',
+                            2: 'time', 3: 'vendor', 4: 'price'})
 
-    df.sort_values(by='Date', inplace=True)
-    df.set_index('Date', inplace=True)
+    df.sort_values(by='date', inplace=True)
+    df.set_index('date', inplace=True)
 
-    print("Saving to csv file")
+    print("Saving to csv file...")
 
     myfile = '%s' % (myuser.strip('@gwmail.gwu.edu')) + '_gworld_dollars.csv'
     df.to_csv(myfile)
@@ -93,7 +88,4 @@ def webpage_to_dataframe():
     return df
 
 
-webpage_to_dataframe()
-
-# pickle_in = open('spending.pickle', 'rb')
-# df = pickle.load(pickle_in)
+# webpage_to_dataframe()

@@ -1,4 +1,4 @@
-Date,Account,Time,Vendor,Price
+date,account,time,vendor,price
 2018-01-14,Dining Cash,21:13:00,Guthridge Hall Washer A2,-1.75
 2018-01-14,Dining Cash,21:45:00,Guthridge Hall Dryer B2,-1.75
 2018-01-15,Dining Cash,21:19:00,TGI Fridays #1757 GW,-7.81
