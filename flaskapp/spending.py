@@ -9,9 +9,6 @@ from selenium.webdriver.chrome.options import Options
 from sqlalchemy import create_engine, exc
 
 
-myuser = input('Enter username: ')
-mypass = getpass.getpass('Enter password: ')
-
 class Spending_History():
 
     def __init__(self, email, password):
@@ -90,4 +87,3 @@ class Spending_History():
 
 # myobj = Spending_History(myuser, mypass)
 # myobj.webpage_to_dataframe()
-

@@ -17,24 +17,28 @@ style.use('ggplot')
 initial_gworld = 1350
 database = 'spending_history.db'
 
-db = sqlite3.connect(database)
-df = pd.read_sql_query("SELECT * FROM history", db)
+def graphed_spending():
+    
 
-# formatting and making information from database clean
-df['currentval'] = np.nan
-df['currentval'] = df['price'] - df['currentval']
-df.currentval = initial_gworld + df.price.cumsum()
-df['datetime'] = pd.to_datetime(df['date'].apply(str) + ' ' + df['time'])
-# df['date'] = pd.to_datetime(df['date']).dt.date
-df.set_index('count', inplace=True)
+    db = sqlite3.connect(database)
+    df = pd.read_sql_query("SELECT * FROM history", db)
+
+    # formatting and making information from database clean
+    df['currentval'] = np.nan
+    df['currentval'] = df['price'] - df['currentval']
+    df.currentval = initial_gworld + df.price.cumsum()
+    df['datetime'] = pd.to_datetime(df['date'].apply(str) + ' ' + df['time'])
+    # df['date'] = pd.to_datetime(df['date']).dt.date
+    df.set_index('count', inplace=True)
 
 
-plt.scatter(df['datetime'].tolist(), df['currentval'])
-plt.xlabel('Date')
-plt.ylabel('GWorld')
+    plt.scatter(df['datetime'].tolist(), df['currentval'])
+    plt.xlabel('Date')
+    plt.ylabel('GWorld')
 
-plt.show()
+    plt.show()
 
+graphed_spending()
 # df['date'] = pd.to_datetime(df['date'])
 # df['date_delta'] = (df['date'] - df['date'].min())  / np.timedelta64(1,'D')
 # xdat = df['date_delta']

@@ -5,12 +5,13 @@
 
   <div class="row-center">
     {% if session['logged_in'] %} {% if data %}
-    <h3>{{data}}</h3> {% else %}
+    <h3>{{data[0]}}</h3> {% else %}
 
     <h3><a href="/logout">Logout</a></h3>
     
 
     <h3>Information about dining app</h3> 
+    {{data}}
     
     <h3>put it here</h3>
     

@@ -1,7 +1,7 @@
 from flask import Flask, url_for, render_template, request, redirect, session
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy import exc
-
+from spending import Spending_History
 
 
 APPNAME = 'GWorld Spending'
@@ -13,6 +13,10 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = True
 app.secret_key = "123"
 
 db = SQLAlchemy(app)
+
+# myobj = Spending_History('suraj98@gwu.edu', 'Nebulae101!')
+# data = myobj.webpage_to_dataframe()
+# print(data)
 
 
 class User(db.Model):
@@ -40,7 +44,12 @@ def home():
             # username = getname(request.form['username'])
             # return render_template('index.html')
             # origina instgram thing -- this is where the gw app comes into play
-            return render_template('index.html')
+            myobj = Spending_History(self.email, self.password)
+            data = myobj.webpage_to_dataframe()
+            print(data)
+
+            
+            return render_template('index.html', data=data)
         else:
             return render_template('index.html')
 
@@ -69,7 +78,7 @@ def login():
 def register():
     # registration form
     try:
-            
+
         if request.method == 'POST':
             new_user = User(fname=request.form['fname'], lname=request.form['lname'],
                             email=request.form['email'], password=request.form['password'])
@@ -79,7 +88,6 @@ def register():
             return render_template('login.html')
     except exc.IntegrityError:
         return render_template("404.html")
-
 
     return render_template('register.html')
 
