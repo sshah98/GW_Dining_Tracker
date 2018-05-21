@@ -65,11 +65,11 @@ def home():
         if 'user' and 'email' in session:
             data.append(session['user'])
             data.append(session['email'])
-            
+
         # Implement loading bar here
 
-        myobj = Spending_History(session['email'], session['password'])
-        df = myobj.webpage_to_dataframe()
+        # myobj = Spending_History(session['email'], session['password'])
+        # df = myobj.webpage_to_dataframe()
 
         return render_template('index.html', data=data)
 
@@ -119,7 +119,7 @@ def login():
                 session['password'] = _pass
                 return redirect(url_for('home'))
             else:
-                return render_template("404.html")
+                return render_template("userError.html")
         except:
             return render_template("404.html")
 

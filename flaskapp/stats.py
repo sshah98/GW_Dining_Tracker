@@ -25,18 +25,12 @@ def graphed_spending():
     df['currentval'] = df['price'] - df['currentval']
     df.currentval = initial_gworld + df.price.cumsum()
     df['datetime'] = pd.to_datetime(df['date'].apply(str) + ' ' + df['time'])
-    # df['date'] = pd.to_datetime(df['date']).dt.date
     df.set_index('datetime', inplace=True)
 
+    print(df.head())
+
     return df
-    # plt.scatter(df['datetime'].tolist(), df['currentval'])
-    # plt.xlabel('Date')
-    # plt.ylabel('GWorld')
-    #
-    # plt.show()
 
-
-# graphed_spending()
 # df['date'] = pd.to_datetime(df['date'])
 # df['date_delta'] = (df['date'] - df['date'].min())  / np.timedelta64(1,'D')
 # xdat = df['date_delta']

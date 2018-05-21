@@ -84,6 +84,3 @@ class Spending_History():
 
         return df
 
-
-# myobj = Spending_History(myuser, mypass)
-# myobj.webpage_to_dataframe()
