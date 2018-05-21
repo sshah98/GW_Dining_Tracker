@@ -56,4 +56,10 @@ then for analysis, use linearregression
 
 
 
+What is done so far:
+
+flask app that user logs into with the username and password 
+
+
+
 

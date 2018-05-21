@@ -1,19 +1,15 @@
-from flask import Flask, url_for, render_template, request, redirect, session
-from flask_sqlalchemy import SQLAlchemy
-from sqlalchemy import exc
-from spending import Spending_History
-import dash
-import dash_html_components as html
-import stats
+import json
 import plotly
 import pandas as pd
 import numpy as np
-import json
-import plotly.plotly as py
-# import cufflinks as cf
 import plotly.graph_objs as go
 
+from flask import Flask, url_for, render_template, request, redirect, session
+from flask_sqlalchemy import SQLAlchemy
+from sqlalchemy import exc
 
+import stats
+from spending import Spending_History
 
 APPNAME = 'GWorld Spending'
 app = Flask(__name__)
@@ -64,16 +60,18 @@ def home():
     if not session.get('logged_in'):
         return render_template('index.html')
     else:
-        # data = []
-        # if 'user' and 'email' in session:
-        #     data.append(session['user'], session['email'])
 
-        # myobj = Spending_History(session['email'], session['password'])
-        # df = myobj.webpage_to_dataframe()
+        data = []
+        if 'user' and 'email' in session:
+            data.append(session['user'])
+            data.append(session['email'])
+            
+        # Implement loading bar here
 
-        print('loading...')
+        myobj = Spending_History(session['email'], session['password'])
+        df = myobj.webpage_to_dataframe()
 
-        return render_template('index.html')
+        return render_template('index.html', data=data)
 
 
 @app.route('/spending_graph', methods=['GET', 'POST'])

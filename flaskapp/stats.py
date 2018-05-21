@@ -3,16 +3,13 @@ import sqlite3
 import datetime
 import pandas as pd
 import numpy as np
-# import matplotlib.pyplot as plt
 
 # from sklearn import preprocessing, cross_validation, svm
 # from sklearn.linear_model import LinearRegression
-from matplotlib import style
 
 # from sklearn.cross_validation import train_test_split
 # import statsmodels.api as sm
 
-# style.use('ggplot')
 
 initial_gworld = 1350
 database = 'test.db'
@@ -30,7 +27,7 @@ def graphed_spending():
     df['datetime'] = pd.to_datetime(df['date'].apply(str) + ' ' + df['time'])
     # df['date'] = pd.to_datetime(df['date']).dt.date
     df.set_index('datetime', inplace=True)
-        
+
     return df
     # plt.scatter(df['datetime'].tolist(), df['currentval'])
     # plt.xlabel('Date')
