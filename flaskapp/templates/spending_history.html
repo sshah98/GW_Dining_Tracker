@@ -1,4 +1,22 @@
-<!doctype html>
+{% extends "layout.html" %} {% block title %}Home {% endblock %} {% block content %} {% if session['logged_in'] %}
+<div class="container" style="width:100%;">
+
+	<nav class="navbar">
+		<div class="navbar-header">
+
+			<span class="navbar-brand"><a href="/" style="text-decoration:none">{{ config.APPNAME }}</a></span>
+		</div>
+		<ul class="nav navbar-nav">
+
+			{% include 'links.html' %}
+			<li><a href="/logout">Logout</a>
+				<li>
+
+
+		</ul>
+	</nav>
+</div>
+
 <html>
 
 <head>
@@ -6,27 +24,34 @@
 
 <body>
 	<h3>Spending History</h3>
-	<div id="graph-0"></div>
+	<div id="graph"></div>
 
 </body>
 
 
 <footer>
-	<!-- D3.js -->
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.6/d3.min.js"></script>
-	<!-- jQuery -->
-	<script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
-	<!-- Plotly.js -->
-	<script src="https://d14fo0winaifog.cloudfront.net/plotly-basic.js"></script>
-
 	<script type="text/javascript">
-		var graph = {
-			{
-				graphJSON | safe
-			}
-		};
-		Plotly.plot("Graphed Data", graph.data, graph.layout);
+		var graph = {{graphJSON | safe}};
+		Plotly.plot("graph", graph.data, graph.layout);
 	</script>
 </footer>
 
 </html>
+
+
+{% else %}
+
+<div class="container" style="width:100%;">
+
+	<div class="row-center">
+
+		<h3>Login to access data!</h3>
+
+		<h3><a href="/login">Login</a></h3>
+		<h3><a href="/register">Register</a></h3>
+
+	</div>
+</div>
+
+
+{% endif %} {% endblock %}

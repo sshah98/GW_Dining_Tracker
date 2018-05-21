@@ -27,7 +27,7 @@ def graphed_spending():
     df['datetime'] = pd.to_datetime(df['date'].apply(str) + ' ' + df['time'])
     df.set_index('datetime', inplace=True)
 
-    print(df.head())
+    # print(df.head())
 
     return df
 
