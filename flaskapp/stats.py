@@ -3,22 +3,22 @@ import sqlite3
 import datetime
 import pandas as pd
 import numpy as np
-import matplotlib.pyplot as plt
+# import matplotlib.pyplot as plt
 
-from sklearn import preprocessing, cross_validation, svm
-from sklearn.linear_model import LinearRegression
+# from sklearn import preprocessing, cross_validation, svm
+# from sklearn.linear_model import LinearRegression
 from matplotlib import style
 
-from sklearn.cross_validation import train_test_split
-import statsmodels.api as sm
+# from sklearn.cross_validation import train_test_split
+# import statsmodels.api as sm
 
-style.use('ggplot')
+# style.use('ggplot')
 
 initial_gworld = 1350
-database = 'spending_history.db'
+database = 'test.db'
+
 
 def graphed_spending():
-    
 
     db = sqlite3.connect(database)
     df = pd.read_sql_query("SELECT * FROM history", db)
@@ -29,16 +29,17 @@ def graphed_spending():
     df.currentval = initial_gworld + df.price.cumsum()
     df['datetime'] = pd.to_datetime(df['date'].apply(str) + ' ' + df['time'])
     # df['date'] = pd.to_datetime(df['date']).dt.date
-    df.set_index('count', inplace=True)
+    df.set_index('datetime', inplace=True)
+        
+    return df
+    # plt.scatter(df['datetime'].tolist(), df['currentval'])
+    # plt.xlabel('Date')
+    # plt.ylabel('GWorld')
+    #
+    # plt.show()
 
 
-    plt.scatter(df['datetime'].tolist(), df['currentval'])
-    plt.xlabel('Date')
-    plt.ylabel('GWorld')
-
-    plt.show()
-
-graphed_spending()
+# graphed_spending()
 # df['date'] = pd.to_datetime(df['date'])
 # df['date_delta'] = (df['date'] - df['date'].min())  / np.timedelta64(1,'D')
 # xdat = df['date_delta']

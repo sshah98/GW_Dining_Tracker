@@ -4,6 +4,15 @@ from sqlalchemy import exc
 from spending import Spending_History
 import dash
 import dash_html_components as html
+import stats
+import plotly
+import pandas as pd
+import numpy as np
+import json
+import plotly.plotly as py
+# import cufflinks as cf
+import plotly.graph_objs as go
+
 
 
 APPNAME = 'GWorld Spending'
@@ -14,9 +23,6 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = True
 app.secret_key = "123"
 db = SQLAlchemy(app)
 
-# myobj = Spending_History('suraj98@gwu.edu', 'Nebulae101!')
-# data = myobj.webpage_to_dataframe()
-# print(data)
 
 class User(db.Model):
     # Create the user table
@@ -33,6 +39,25 @@ class User(db.Model):
         self.password = password
 
 
+class History(db.Model):
+    # create the spending history table
+    id = db.Column(db.Integer, primary_key=True)
+    date = db.Column(db.Integer)
+    account = db.Column(db.Text)
+    time = db.Column(db.Integer)
+    vendor = db.Column(db.Text)
+    price = db.Column(db.Float)
+    email = db.Column(db.String(100), db.ForeignKey('user.email'))
+
+    def __init__(self, date, account, time, vendor, price, email):
+        self.date = date
+        self.account = account
+        self.time = time
+        self.vendor = vendor
+        self.price = price
+        self.email = email
+
+
 @app.route('/', methods=['GET', 'POST'])
 def home():
     # Session control
@@ -42,16 +67,42 @@ def home():
         # data = []
         # if 'user' and 'email' in session:
         #     data.append(session['user'], session['email'])
-                    
+
+        # myobj = Spending_History(session['email'], session['password'])
+        # df = myobj.webpage_to_dataframe()
+
+        print('loading...')
+
         return render_template('index.html')
-        
+
+
 @app.route('/spending_graph', methods=['GET', 'POST'])
 def spending_history():
     if not session.get('logged_in'):
         return render_template('index.html')
     else:
         # do stuff here with plotly
-        return 
+
+        df = stats.graphed_spending()
+
+        graph = dict(
+            data=[go.Scatter(
+                x=df.index,
+                y=df['currentval']
+            )],
+            layout=dict(
+                title='Scatter Plot',
+                yaxis=dict(
+                    title="Spending"
+                ),
+                xaxis=dict(
+                    title="Date"
+                )
+            )
+        )
+        graphJSON = json.dumps(graph, cls=plotly.utils.PlotlyJSONEncoder)
+
+        return render_template('spending_history.html', graphJSON=graphJSON)
 
 
 @app.route('/login', methods=['GET', 'POST'])

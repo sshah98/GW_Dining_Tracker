@@ -68,7 +68,7 @@ class Spending_History():
         # sort values by date and reset the index for the count, which is PK
         df.sort_values(by='date', inplace=True)
         df = df.reset_index(drop=True)
-        df.index.names = ['count']
+        df.index.names = ['id']
 
         df['email'] = self.email
 
