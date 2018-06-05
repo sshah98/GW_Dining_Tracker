@@ -37,7 +37,36 @@ def home():
         # df = myobj.webpage_to_dataframe()
 
         return render_template('index.html', user=name)
-        
+
+# @app.route('/spending_graph', methods=['GET', 'POST'])
+# def spending_history():
+#     if not session.get('logged_in'):
+#         return render_template('index.html')
+#     else:
+#         # do stuff here with plotly
+#
+#         df = graphed_spending()
+#         graph = dict(
+#             data=[go.Scatter(
+#                 x=df.index,
+#                 y=df['currentval']
+#             )],
+#             layout=dict(
+#                 title='Scatter Plot',
+#                 yaxis=dict(
+#                     title="Spending"
+#                 ),
+#                 xaxis=dict(
+#                     title="Date"
+#                 )
+#             )
+#         )
+#         graphJSON = json.dumps(graph, cls=plotly.utils.PlotlyJSONEncoder)
+#         graphJSON = Markup(graphJSON)
+#
+#         return render_template('spending_history.html', graphJSON=graphJSON)
+
+
 @app.route('/login', methods=['GET', 'POST'])
 def login():
     # login form
@@ -83,6 +112,7 @@ def logout():
     # logout form
     session['logged_in'] = False
     return redirect(url_for('home'))
+
 
 if __name__ == '__main__':
     app.run()
