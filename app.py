@@ -9,8 +9,8 @@ import pandas as pd
 import numpy as np
 import plotly.graph_objs as go
 
-# from stats import graphed_spending
-# from spending import Spending_History
+from stats import graphed_spending
+from spending import Spending_History
 
 
 APPNAME = 'GWorld Spending'
@@ -37,7 +37,7 @@ def home():
             name = session['email'].split("@")[0]
 
         # TODO: Implement a loading bar in html page
-
+        
         # myobj = Spending_History(session['email'], session['password'])
         # df = myobj.webpage_to_dataframe()
 

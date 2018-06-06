@@ -24,20 +24,22 @@ class History(db.Model):
     __tablename__ = 'history'
 
     id = db.Column(db.Integer, primary_key=True)
-    date = db.Column(db.Integer)
+    date = db.Column(db.DateTime)
     account = db.Column(db.Text)
-    time = db.Column(db.Integer)
+    time = db.Column(db.DateTime)
     vendor = db.Column(db.Text)
     price = db.Column(db.Float)
     email = db.Column(db.String(), db.ForeignKey('users.email'))
+    datetime = db.Column(db.DateTime)
 
-    def __init__(self, date, account, time, vendor, price, email):
+    def __init__(self, date, account, time, vendor, price, email, datetime):
         self.date = date
         self.account = account
         self.time = time
         self.vendor = vendor
         self.price = price
         self.email = email
+        self.datetime = datetime
 
     def __repr__(self):
         return '<id {}>'.format(self.id)

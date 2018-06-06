@@ -8,11 +8,6 @@ from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 from sqlalchemy import create_engine, exc
 
-import os
-import psycopg2
-
-# DATABASE_URL = os.environ['DATABASE_URL']
-# conn = psycopg2.connect(DATABASE_URL, sslmode='require')
 
 class Spending_History():
 
@@ -70,22 +65,33 @@ class Spending_History():
 
         df = df.rename(columns={0: 'account', 1: 'date',
                                 2: 'time', 3: 'vendor', 4: 'price'})
+
         # sort values by date and reset the index for the count, which is PK
-        df.sort_values(by='date', inplace=True)
         df = df.reset_index(drop=True)
         df.index.names = ['id']
 
         df['email'] = self.email
 
-        # print("Adding to database...")
+        df['datetime'] = pd.to_datetime(
+            df['date'].apply(str) + ' ' + df['time'].apply(str))
 
-        disk_engine = create_engine('sqlite:///test.db')
+        df.drop(columns=['date', 'time'], inplace=True)
+        df.sort_values(by='datetime', inplace=True, ascending=True)
+        
+        # print(df.to_string())
+
+
+        disk_engine = create_engine(
+            'postgresql+psycopg2://suraj:password@localhost/gworld')
         for i in range(len(df)):
             try:
                 df.iloc[i:i + 1].to_sql(name="history",
                                         if_exists='append', con=disk_engine)
             except exc.IntegrityError:
                 pass
-
+        
         return df
 
+
+# myobj = Spending_History('suraj98@gwu.edu', 'Nebulae101!')
+# df = myobj.webpage_to_dataframe()

@@ -12,24 +12,32 @@ import numpy as np
 
 
 initial_gworld = 1350
-database = 'test.db'
 
+import os
+import psycopg2
+
+DATABASE_URL = os.environ['DATABASE_URL']
+database = psycopg2.connect(DATABASE_URL, sslmode='require')
+# import matplotlib.pyplot as plt
 
 def graphed_spending():
 
-    db = sqlite3.connect(database)
-    df = pd.read_sql_query("SELECT * FROM history", db)
+    df = pd.read_sql_query("SELECT * FROM history", database)
 
     # formatting and making information from database clean
     df['currentval'] = np.nan
     df['currentval'] = df['price'] - df['currentval']
     df.currentval = initial_gworld + df.price.cumsum()
-    df['datetime'] = pd.to_datetime(df['date'].apply(str) + ' ' + df['time'])
     df.set_index('datetime', inplace=True)
 
-    # print(df.head())
+    # print(df.to_string())
+    
+    
 
     return df
+
+
+# graphed_spending()
 
 # df['date'] = pd.to_datetime(df['date'])
 # df['date_delta'] = (df['date'] - df['date'].min())  / np.timedelta64(1,'D')
