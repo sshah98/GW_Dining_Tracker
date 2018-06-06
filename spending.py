@@ -10,7 +10,7 @@ from selenium.webdriver.chrome.options import Options
 from sqlalchemy import create_engine, exc
 
 CHROMEDRIVER_PATH = os.environ['CHROMEDRIVER_PATH']
-GOOGLE_CHROME_BIN = os.environ['GOOGLE_CHROME_BIN']
+# GOOGLE_CHROME_BIN = os.environ['GOOGLE_CHROME_BIN']
 
 
 class Spending_History():
@@ -21,7 +21,7 @@ class Spending_History():
 
     def spending_history_webpage(self):
         options = Options()
-        options.binary_location = GOOGLE_CHROME_BIN
+        # options.binary_location = GOOGLE_CHROME_BIN
         options.add_argument('--disable-gpu')
         options.add_argument('--no-sandbox')
         # options.add_argument('--headless')
@@ -32,8 +32,6 @@ class Spending_History():
         # mydriver = webdriver.Chrome(
         #     executable_path='chromedriver', chrome_options=options)
         mydriver.get("https://get.cbord.com/gwu/full/login.php")
-
-        # print("Logging in...")
 
         mydriver.find_element_by_id(
             "login_username_text").send_keys(self.email)
