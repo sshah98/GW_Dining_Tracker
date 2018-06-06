@@ -2,6 +2,7 @@ import getpass
 import sqlite3
 import pandas as pd
 import numpy as np
+import os
 
 from bs4 import BeautifulSoup
 from selenium import webdriver
@@ -10,6 +11,7 @@ from sqlalchemy import create_engine, exc
 
 CHROMEDRIVER_PATH = os.environ['CHROMEDRIVER_PATH']
 GOOGLE_CHROME_BIN = os.environ['GOOGLE_CHROME_BIN']
+
 
 class Spending_History():
 
