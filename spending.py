@@ -87,7 +87,8 @@ class Spending_History():
         # print(df.to_string())
 
         disk_engine = create_engine(
-            'postgresql+psycopg2://suraj:password@localhost/gworld')
+            'postgresql+psycopg2://gvbgcpweihoipq:d52e382574f9ad2313c882534fb07ceb52484e04f112b3e405c3e9ee441048b2@ec2-54-235-206-118.compute-1.amazonaws.com:5432/d4n9qk3lo1qsr2
+')
         for i in range(len(df)):
             try:
                 df.iloc[i:i + 1].to_sql(name="history",
