@@ -71,6 +71,7 @@ def spending_history():
         return render_template('spending_history.html', graphJSON=graphJSON)
 
 
+
 @app.route('/login', methods=['GET', 'POST'])
 def login():
     # login form
