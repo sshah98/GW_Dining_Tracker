@@ -1,0 +1,15 @@
+Heroku
+
+source env/bin/activate
+export APP_SETTINGS="config.DevelopmentConfig"
+export DATABASE_URL="postgresql://suraj:password@localhost/gworld"
+export GOOGLE_CHROME_BIN= "/app/.apt/usr/bin/google-chrome-stable"
+export CHROMEDRIVER_PATH="/app/.chromedriver/bin/chromedriver"
+
+
+Local
+source env/bin/activate
+export APP_SETTINGS="config.DevelopmentConfig"
+export DATABASE_URL="postgresql://suraj:password@localhost/gworld"
+export GOOGLE_CHROME_BIN = "/usr/bin/google-chrome"
+export CHROMEDRIVER_PATH = "/home/suraj/Documents/Programming/current-projects/GW_Dining_Tracker/chromedriver"
