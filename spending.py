@@ -1,5 +1,3 @@
-import getpass
-import sqlite3
 import pandas as pd
 import numpy as np
 import os
@@ -25,14 +23,12 @@ class Spending_History():
         options.add_argument('--disable-gpu')
         options.add_argument('--no-sandbox')
         options.add_argument('--headless')
-        # options.add_argument('--disable-gpu')
-        # options.add_argument("--disable-extensions")
+        options.add_argument("--disable-extensions")
 
-        mydriver = webdriver.Chrome(executable_path=CHROMEDRIVER_PATH, chrome_options=options)
-        # mydriver = webdriver.Chrome(
-        #     executable_path='chromedriver', chrome_options=options)
+        mydriver = webdriver.Chrome(
+            executable_path=CHROMEDRIVER_PATH, chrome_options=options)
+
         mydriver.get("https://get.cbord.com/gwu/full/login.php")
-
         mydriver.find_element_by_id(
             "login_username_text").send_keys(self.email)
         mydriver.find_element_by_id(
@@ -51,8 +47,6 @@ class Spending_History():
         table = soup.find(
             "table", {"class": "table table-striped table-bordered"})
 
-        # print("Extracting spending history...")
-
         # formatting before converting to dataframe
         items = list(table.stripped_strings)
         items = [elem for elem in items if elem.strip(",")]
@@ -64,6 +58,7 @@ class Spending_History():
         df = df.astype(str)
         df[4] = df[4].replace({'\$': '', '\+ ': '', '- ': '-'}, regex=True)
         df[4] = df[4].astype(np.float64)
+
         # converts day, month, year time to proper format
         df[1] = pd.to_datetime(df[1], errors='raise')
         df[2] = pd.to_datetime(df[2], errors='raise')
@@ -96,7 +91,3 @@ class Spending_History():
                 pass
 
         return df
-
-
-# myobj = Spending_History('suraj98@gwu.edu', 'Nebulae101!')
-# df = myobj.webpage_to_dataframe()

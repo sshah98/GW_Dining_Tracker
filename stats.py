@@ -1,5 +1,3 @@
-import math
-import sqlite3
 import datetime
 import pandas as pd
 import numpy as np
@@ -18,7 +16,7 @@ import psycopg2
 
 DATABASE_URL = os.environ['DATABASE_URL']
 database = psycopg2.connect(DATABASE_URL, sslmode='require')
-# import matplotlib.pyplot as plt
+
 
 def graphed_spending():
 
@@ -31,8 +29,6 @@ def graphed_spending():
     df.set_index('datetime', inplace=True)
 
     # print(df.to_string())
-    
-    
 
     return df
 
