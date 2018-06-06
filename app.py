@@ -25,7 +25,6 @@ db = SQLAlchemy(app)
 
 from models import *
 
-
 @app.route('/', methods=['GET', 'POST'])
 def home():
     # Session control
