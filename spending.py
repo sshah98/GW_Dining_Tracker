@@ -17,12 +17,16 @@ class Spending_History():
 
     def spending_history_webpage(self):
         options = Options()
-        options.add_argument('--headless')
-        options.add_argument('--disable-gpu')
-        options.add_argument("--disable-extensions")
+        chrome_options.binary_location = GOOGLE_CHROME_BIN
+        chrome_options.add_argument('--disable-gpu')
+        chrome_options.add_argument('--no-sandbox')
+        # options.add_argument('--headless')
+        # options.add_argument('--disable-gpu')
+        # options.add_argument("--disable-extensions")
 
-        mydriver = webdriver.Chrome(
-            executable_path='chromedriver', chrome_options=options)
+        mydriver = webdriver.Chrome(executable_path=CHROMEDRIVER_PATH, chrome_options=chrome_options)
+        # mydriver = webdriver.Chrome(
+        #     executable_path='chromedriver', chrome_options=options)
         mydriver.get("https://get.cbord.com/gwu/full/login.php")
 
         # print("Logging in...")
@@ -77,9 +81,8 @@ class Spending_History():
 
         df.drop(columns=['date', 'time'], inplace=True)
         df.sort_values(by='datetime', inplace=True, ascending=True)
-        
-        # print(df.to_string())
 
+        # print(df.to_string())
 
         disk_engine = create_engine(
             'postgresql+psycopg2://suraj:password@localhost/gworld')
@@ -89,7 +92,7 @@ class Spending_History():
                                         if_exists='append', con=disk_engine)
             except exc.IntegrityError:
                 pass
-        
+
         return df
 
 
