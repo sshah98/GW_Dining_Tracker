@@ -1,65 +1,31 @@
 # GW Dining Tracker
 
-## The goal is to provide a way for students to input their current balance. The program will track user spending with input of the place they bought and the money they spent
+### Visit the website [here]('https://diningapp-stage.herokuapp.com/')
 
--   (will need to be changed later because many students don't actually get receipts or care how much money they spent at one time)
+## Background
 
-The application starts off with the input value of the current balance of the student
+GW Students have a notorious experience with the GET App. It does not provide enough information about spending habits or when students will run out of GWorld. The App can be buggy and lack vital information.
 
-### _Done_:
+## What is GW Dining Tracker
 
--   CSV file contains vendor information (name, address, website, and filters inc. veg friendly, deliver, late night)
--   CSV file containing prices of every transaction in one's get history from present day to 6 months ago
--   python file scrapes GET-Cbord website for data, puts into DataFrame and then plots line with regression
+The goal of this app is to proide a web interface to access information about your GWorld. Some examples include:
 
--   Focus on predicting by date, when dining dollars will run out 
+-   Graphs displaying overall spending
+-   Visualizations showing percentages and other statistics (TODO)
+-   Predictions of when GWorld will run out (TODO)
+-   Map of all GWorld accepting places (TODO)
+-   Get data about the average amount spent per day (TODO)
+-   Data about how much you spend per week (TODO)
+-   Get data about places you spend the most money (TODO)
 
-### _To Do_:
+-   More to come!
 
-1.  See what other statistical analysis and information can be understood from the data
+## How does it work
 
--   Intermediary steps here
--   Intermediary steps here
--   Get data about the average amount spent per day
--   Data about how much you spend per week
--   Get data about when you will run out of gworld based on current spending     habits
--   Get data about places you spend the most money
--   Figure out other key things that could help users 
+A python program scrapes the GET website for your information using your provided username and password. This is stored in a postgres database along with your login information. 
 
-3.  Implement into a Django REST API so that other people can start accessing their information 
-4.  Figure out how to convert the rest api to a web interface in the beginning so that users can see
+A flask app with a web interface allows the user to interact with the information retreived from the database
 
+## Where can I access the App
 
-### _Next Steps_:
-
-Make a django/flask app -- figure that out
-Login page that user uses with same user and password as GET App
-One single page that shows Average spent in the last week, average spending per day
-Broken by category - food, printing, laundry, snacks(gallery market, etc)
-
-
-
-
-http://chromedriver.chromium.org/downloads
-
-
-
-
-
-
-
-
-use a flask app, take the csv data and display it
-have a login which is the one to use to login to get the data
-
-then for analysis, use linearregression
-
-
-
-What is done so far:
-
-flask app that user logs into with the username and password 
-
-
-
-
+Please go to the main page [here]('https://diningapp-stage.herokuapp.com/')
