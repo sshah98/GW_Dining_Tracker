@@ -7,8 +7,8 @@ from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 from sqlalchemy import create_engine, exc
 
-CHROMEDRIVER_PATH = os.environ['CHROMEDRIVER_PATH']
-GOOGLE_CHROME_BIN = os.environ['GOOGLE_CHROME_BIN']
+# CHROMEDRIVER_PATH = os.environ['CHROMEDRIVER_PATH']
+# GOOGLE_CHROME_BIN = os.environ['GOOGLE_CHROME_BIN']
 
 class Spending_History():
 
@@ -18,14 +18,14 @@ class Spending_History():
 
     def spending_history_webpage(self):
         options = Options()
-        options.binary_location = GOOGLE_CHROME_BIN
+        # options.binary_location = GOOGLE_CHROME_BIN
         options.add_argument('--disable-gpu')
         options.add_argument('--no-sandbox')
         options.add_argument('--headless')
         options.add_argument("--disable-extensions")
 
         mydriver = webdriver.Chrome(
-            executable_path=CHROMEDRIVER_PATH, chrome_options=options)
+            executable_path="/home/suraj/Documents/Programming/current-projects/GW_Dining_Tracker/chromedriver", chrome_options=options)
 
         mydriver.get("https://get.cbord.com/gwu/full/login.php")
         mydriver.find_element_by_id(
