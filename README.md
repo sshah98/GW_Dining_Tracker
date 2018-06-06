@@ -1,6 +1,6 @@
 # GW Dining Tracker
 
-### Visit the website [here]('https://diningapp-stage.herokuapp.com/')
+### Visit the website [here](https://diningapp-stage.herokuapp.com/)
 
 ## Background
 
@@ -28,4 +28,4 @@ A flask app with a web interface allows the user to interact with the informatio
 
 ## Where can I access the App
 
-Please go to the main page [here]('https://diningapp-stage.herokuapp.com/')
+Please go to the main page [here](https://diningapp-stage.herokuapp.com/)
