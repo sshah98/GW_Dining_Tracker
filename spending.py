@@ -21,14 +21,14 @@ class Spending_History():
 
     def spending_history_webpage(self):
         options = Options()
-        chrome_options.binary_location = GOOGLE_CHROME_BIN
-        chrome_options.add_argument('--disable-gpu')
-        chrome_options.add_argument('--no-sandbox')
+        options.binary_location = GOOGLE_CHROME_BIN
+        options.add_argument('--disable-gpu')
+        options.add_argument('--no-sandbox')
         # options.add_argument('--headless')
         # options.add_argument('--disable-gpu')
         # options.add_argument("--disable-extensions")
 
-        mydriver = webdriver.Chrome(executable_path=CHROMEDRIVER_PATH, chrome_options=chrome_options)
+        mydriver = webdriver.Chrome(executable_path=CHROMEDRIVER_PATH, chrome_options=options)
         # mydriver = webdriver.Chrome(
         #     executable_path='chromedriver', chrome_options=options)
         mydriver.get("https://get.cbord.com/gwu/full/login.php")
