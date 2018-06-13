@@ -160,9 +160,6 @@ venv.bak/
 
 # End of https://www.gitignore.io/api/python,macos,linux,django,flask,env,
 
-chromedriver
-
-
 # Created by https://www.gitignore.io/api/database
 
 ### Database ###
