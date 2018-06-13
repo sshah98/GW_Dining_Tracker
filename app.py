@@ -40,7 +40,7 @@ def home():
 
         # TODO: Implement a loading bar in html page
         
-        myobj = Spending_History(session['email'], session['password'])
+        # myobj = Spending_History(session['email'], session['password'])
         df = myobj.webpage_to_dataframe()
 
         return render_template('index.html', user=name)
@@ -91,6 +91,8 @@ def login():
                 session['logged_in'] = True
                 session['email'] = request.form['email']
                 session['password'] = request.form['password']
+                session['spending'] = Spending_History(session['email'], session['password'])
+
                 return redirect(url_for('home'))
             else:
                 return render_template("userError.html")
