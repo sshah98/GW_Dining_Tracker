@@ -91,7 +91,7 @@ def login():
                 session['logged_in'] = True
                 session['email'] = request.form['email']
                 session['password'] = request.form['password']
-                session['spending'] = Spending_History(session['email'], session['password'])
+                session['spending'] = Spending_History(session['email'], session['password']).webpage_to_dataframe().to_json()
 
                 return redirect(url_for('home'))
             else:
