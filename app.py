@@ -41,7 +41,7 @@ def home():
         # TODO: Implement a loading bar in html page
         
         # myobj = Spending_History(session['email'], session['password'])
-        df = myobj.webpage_to_dataframe()
+        # df = myobj.webpage_to_dataframe()
 
         return render_template('index.html', user=name)
 

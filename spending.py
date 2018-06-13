@@ -27,6 +27,7 @@ class Spending_History():
 
         mydriver = webdriver.Chrome(
             executable_path=CHROMEDRIVER_PATH, chrome_options=options)
+        print("opening chrome")
 
         mydriver.get("https://get.cbord.com/gwu/full/login.php")
         mydriver.find_element_by_id(
@@ -38,6 +39,8 @@ class Spending_History():
         html = mydriver.page_source
         soup = BeautifulSoup(html, "lxml")
         mydriver.close()
+
+        print("found data")
 
         return soup
 
@@ -63,6 +66,8 @@ class Spending_History():
         df[1] = pd.to_datetime(df[1], errors='raise')
         df[2] = pd.to_datetime(df[2], errors='raise')
         df[2] = df[2] = pd.Series([val.time() for val in df[2]])
+
+        print("creating dataframe")
 
         df = df.rename(columns={0: 'account', 1: 'date',
                                 2: 'time', 3: 'vendor', 4: 'price'})

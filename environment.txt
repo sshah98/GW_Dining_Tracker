@@ -12,8 +12,4 @@ source env/bin/activate
 export APP_SETTINGS="config.DevelopmentConfig"
 export DATABASE_URL="postgresql://suraj:password@localhost/gworld"
 
-
-
-
-export GOOGLE_CHROME_BIN = "/usr/bin/google-chrome"
-export CHROMEDRIVER_PATH = "/home/suraj/Documents/Programming/current-projects/GW_Dining_Tracker/chromedriver"
+postgresql+psycopg2://gvbgcpweihoipq:d52e382574f9ad2313c882534fb07ceb52484e04f112b3e405c3e9ee441048b2@ec2-54-235-206-118.compute-1.amazonaws.com:5432/d4n9qk3lo1qsr2
