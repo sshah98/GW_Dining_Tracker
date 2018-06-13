@@ -26,7 +26,7 @@ class Spending_History():
         options.add_argument("--disable-extensions")
 
         mydriver = webdriver.Chrome(
-            executable_path=CHROMEDRIVER_PATHs, chrome_options=options)
+            executable_path=CHROMEDRIVER_PATH, chrome_options=options)
 
         mydriver.get("https://get.cbord.com/gwu/full/login.php")
         mydriver.find_element_by_id(
