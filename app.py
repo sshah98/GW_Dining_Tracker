@@ -40,12 +40,10 @@ def home():
         if 'email' in session:
             name = session['email'].split("@")[0]
 
-        # TODO: Implement a loading bar in html page
         
-        # myobj = Spending_History(session['email'], session['password'])
-        # df = myobj.webpage_to_dataframe()
 
         return render_template('index.html', user=name)
+
 
 @app.route('/refresh', methods=['GET', 'POST'])
 def refresh():
@@ -56,6 +54,7 @@ def refresh():
     flash('GWorld Dining Dollars Data Updated!')
 
     return render_template('index.html')
+
 
 @app.route('/spending_graph', methods=['GET', 'POST'])
 def spending_history():
@@ -132,10 +131,12 @@ def register():
 
     return render_template('register.html')
 
+
 @socketio.on('disconnect')
 def disconnect_user():
     session.clear()
     session.pop('random-key', None)
+
 
 @app.route('/logout/')
 def logout():
