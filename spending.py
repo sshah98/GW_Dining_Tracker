@@ -7,8 +7,8 @@ from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 from sqlalchemy import create_engine, exc
 
-CHROMEDRIVER_PATH = os.environ['CHROMEDRIVER_PATH']
-GOOGLE_CHROME_BIN = os.environ['GOOGLE_CHROME_BIN']
+# CHROMEDRIVER_PATH = os.environ['CHROMEDRIVER_PATH']
+# GOOGLE_CHROME_BIN = os.environ['GOOGLE_CHROME_BIN']
 
 
 class Spending_History():
@@ -25,8 +25,8 @@ class Spending_History():
         options.add_argument('--headless')
         options.add_argument("--disable-extensions")
 
-        mydriver = webdriver.Chrome(
-            executable_path=CHROMEDRIVER_PATH, chrome_options=options)
+        # mydriver = webdriver.Chrome(executable_path='chromedriver', chrome_options=options)
+        mydriver = webdriver.Chrome(executable_path=CHROMEDRIVER_PATH, chrome_options=options)
         print("opening chrome")
 
         mydriver.get("https://get.cbord.com/gwu/full/login.php")
@@ -85,6 +85,8 @@ class Spending_History():
         df.sort_values(by='datetime', inplace=True, ascending=True)
 
         # print(df.to_string())
+
+        print("data collected")
 
         disk_engine = create_engine(
             'postgresql+psycopg2://gvbgcpweihoipq:d52e382574f9ad2313c882534fb07ceb52484e04f112b3e405c3e9ee441048b2@ec2-54-235-206-118.compute-1.amazonaws.com:5432/d4n9qk3lo1qsr2')

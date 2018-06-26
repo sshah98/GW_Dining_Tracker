@@ -13,34 +13,43 @@
 				<li>
 
 
-		</ul>
-	</nav>
-</div>
+				</ul>
+			</nav>
+		</div>
 
 
-<div class="container" style="width:100%;">
+		<div class="container" style="width:100%;">
 
-	<div class="row-center">
+			<div class="row-center">
+				{% with messages = get_flashed_messages() %}
+				{% if messages %}
+				<ul class=flashes>
+					{% for message in messages %}
+					<li>{{ message }}</li>
+					{% endfor %}
+				</ul>
+				{% endif %}
+				{% endwith %}
 
-		<h3>Welcome <b>{{user}}</b>!</h3>
-		<h4>Add information about dining app here. Links at top for other things</h4>
+				<h3>Welcome <b>{{user}}</b>!</h3>
+				<h4>Add information about dining app here. Links at top for other things</h4>
 
-	</div>
-</div>
+			</div>
+		</div>
 
-{% else %}
+		{% else %}
 
-<div class="container" style="width:100%;">
+		<div class="container" style="width:100%;">
 
-	<div class="row-center">
+			<div class="row-center">
 
-		<h3>Login to access data!</h3>
+				<h3>Login to access data!</h3>
 
-		<h3><a href="/login">Login</a></h3>
-		<h3><a href="/register">Register</a></h3>
+				<h3><a href="/login">Login</a></h3>
+				<h3><a href="/register">Register</a></h3>
 
-	</div>
-</div>
+			</div>
+		</div>
 
 
-{% endif %} {% endblock %}
+		{% endif %} {% endblock %}

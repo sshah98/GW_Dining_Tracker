@@ -8,7 +8,7 @@ GW Students have a notorious experience with the GET App. It does not provide en
 
 ## What is GW Dining Tracker
 
-The goal of this app is to proide a web interface to access information about your GWorld. Some examples include:
+The goal of this app is to provide a web interface to access information about your GWorld. Some examples include:
 
 -   Graphs displaying overall spending
 -   Visualizations showing percentages and other statistics (TODO)

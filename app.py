@@ -6,7 +6,8 @@ import pandas as pd
 import numpy as np
 import plotly.graph_objs as go
 
-from flask import Flask, url_for, render_template, request, redirect, session, Markup
+from flask import Flask, url_for, render_template, request, redirect, session, Markup, flash
+from flask_socketio import SocketIO, emit
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy import exc
 
@@ -17,6 +18,7 @@ from spending import Spending_History
 APPNAME = 'GWorld Spending'
 
 app = Flask(__name__)
+socketio = SocketIO(app)
 
 app.config.update(APPNAME=APPNAME,)
 app.config.from_object(os.environ['APP_SETTINGS'])
@@ -45,6 +47,15 @@ def home():
 
         return render_template('index.html', user=name)
 
+@app.route('/refresh', methods=['GET', 'POST'])
+def refresh():
+
+    myobj = Spending_History(session['email'], session['password'])
+    df = myobj.webpage_to_dataframe()
+
+    flash('GWorld Dining Dollars Data Updated!')
+
+    return render_template('index.html')
 
 @app.route('/spending_graph', methods=['GET', 'POST'])
 def spending_history():
@@ -91,7 +102,7 @@ def login():
                 session['logged_in'] = True
                 session['email'] = request.form['email']
                 session['password'] = request.form['password']
-                session['spending'] = Spending_History(session['email'], session['password']).webpage_to_dataframe().to_json()
+                # session['spending'] = Spending_History(session['email'], session['password']).webpage_to_dataframe().to_json()
 
                 return redirect(url_for('home'))
             else:
@@ -121,6 +132,10 @@ def register():
 
     return render_template('register.html')
 
+@socketio.on('disconnect')
+def disconnect_user():
+    session.clear()
+    session.pop('random-key', None)
 
 @app.route('/logout/')
 def logout():
