@@ -1,26 +1,6 @@
-{% extends "layout.html" %} {% block title %}Home {% endblock %} {% block content %} {% if session['logged_in'] %}
-<div class="container" style="width:100%;">
-
-	<nav class="navbar">
-		<div class="navbar-header">
-
-			<span class="navbar-brand"><a href="/" style="text-decoration:none">{{ config.APPNAME }}</a></span>
-		</div>
-		<ul class="nav navbar-nav">
-
-			{% include 'links.html' %}
-			<li><a href="/logout">Logout</a>
-				<li>
-
-
-		</ul>
-	</nav>
-</div>
-
-<html>
-
-<head>
-</head>
+{% extends "base.html" %}
+{% block body %}
+{% include "navbar.html" %}
 
 <body>
 	<h3>Spending History</h3>
@@ -38,20 +18,4 @@
 
 </html>
 
-
-{% else %}
-
-<div class="container" style="width:100%;">
-
-	<div class="row-center">
-
-		<h3>Login to access data!</h3>
-
-		<h3><a href="/login">Login</a></h3>
-		<h3><a href="/register">Register</a></h3>
-
-	</div>
-</div>
-
-
-{% endif %} {% endblock %}
+{% endblock %}

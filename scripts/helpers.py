@@ -33,7 +33,6 @@ def get_user():
             tabledef.User.username.in_([username])).first()
         return user
 
-
 def add_user(username, password, email):
     with session_scope() as s:
         u = tabledef.User(username=username, password=password, email=email)
