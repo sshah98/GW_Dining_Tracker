@@ -19,7 +19,7 @@ from spending import Spending_History
 
 app = Flask(__name__)
 socketio = SocketIO(app)
-
+ 
 
 # ======== Routing =========================================================== #
 # -------- Login ------------------------------------------------------------- #
