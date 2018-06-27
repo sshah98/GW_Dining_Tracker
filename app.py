@@ -100,8 +100,6 @@ def refresh():
     return render_template('home.html')
 
 
-
-
 # @app.route('/spending_graph', methods=['GET', 'POST'])
 # def spending_history():
 #     if not session.get('logged_in'):
@@ -125,7 +123,7 @@ def refresh():
 #         )
 #         graphJSON = json.dumps(graph, cls=plotly.utils.PlotlyJSONEncoder)
 #         graphJSON = Markup(graphJSON)
-# 
+#
 #         return render_template('spending_history.html', graphJSON=graphJSON)
 
 
