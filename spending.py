@@ -7,8 +7,8 @@ from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 from sqlalchemy import create_engine, exc
 
-# CHROMEDRIVER_PATH = os.environ['CHROMEDRIVER_PATH']
-# GOOGLE_CHROME_BIN = os.environ['GOOGLE_CHROME_BIN']
+CHROMEDRIVER_PATH = os.environ['CHROMEDRIVER_PATH']
+GOOGLE_CHROME_BIN = os.environ['GOOGLE_CHROME_BIN']
 
 
 class Spending_History():

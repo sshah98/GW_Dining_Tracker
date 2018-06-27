@@ -29,7 +29,8 @@ def get_session():
 def get_user():
     username = session['username']
     with session_scope() as s:
-        user = s.query(tabledef.User).filter(tabledef.User.username.in_([username])).first()
+        user = s.query(tabledef.User).filter(
+            tabledef.User.username.in_([username])).first()
         return user
 
 
@@ -43,7 +44,8 @@ def add_user(username, password, email):
 def change_user(**kwargs):
     username = session['username']
     with session_scope() as s:
-        user = s.query(tabledef.User).filter(tabledef.User.username.in_([username])).first()
+        user = s.query(tabledef.User).filter(
+            tabledef.User.username.in_([username])).first()
         for arg, val in kwargs.items():
             if val != "":
                 setattr(user, arg, val)
@@ -56,7 +58,8 @@ def hash_password(password):
 
 def credentials_valid(username, password):
     with session_scope() as s:
-        user = s.query(tabledef.User).filter(tabledef.User.username.in_([username])).first()
+        user = s.query(tabledef.User).filter(
+            tabledef.User.username.in_([username])).first()
         if user:
             return bcrypt.checkpw(password.encode('utf8'), user.password)
         else:

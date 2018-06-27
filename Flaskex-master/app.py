@@ -1,15 +1,24 @@
 # -*- coding: utf-8 -*-
+import json
+import sys
+import os
+import plotly
+import pandas as pd
+import numpy as np
+import plotly.graph_objs as go
+
 
 from scripts import tabledef
 from scripts import forms
 from scripts import helpers
-from flask import Flask, redirect, url_for, render_template, request, session
-import json
-import sys
-import os
+from flask import Flask, redirect, url_for, render_template, request, session, flash, Markup
+from flask_socketio import SocketIO, emit
 
+# from stats import graphed_spending
+# from spending import Spending_History
 
 app = Flask(__name__)
+socketio = SocketIO(app)
 
 
 # ======== Routing =========================================================== #
@@ -25,6 +34,8 @@ def login():
                 if helpers.credentials_valid(username, password):
                     session['logged_in'] = True
                     session['username'] = username
+                    # session['email'] = request.form['email']
+                    session['password'] = request.form['password']
                     return json.dumps({'status': 'Login successful'})
                 return json.dumps({'status': 'Invalid user/pass'})
             return json.dumps({'status': 'Both fields required'})
@@ -53,6 +64,8 @@ def signup():
                     helpers.add_user(username, password, email)
                     session['logged_in'] = True
                     session['username'] = username
+                    session['email'] = request.form['email']
+                    session['password'] = request.form['password']
                     return json.dumps({'status': 'Signup successful'})
                 return json.dumps({'status': 'Username taken'})
             return json.dumps({'status': 'User/Pass required'})
@@ -74,6 +87,54 @@ def settings():
         user = helpers.get_user()
         return render_template('settings.html', user=user)
     return redirect(url_for('login'))
+
+
+@app.route('/refresh', methods=['GET', 'POST'])
+def refresh():
+
+    myobj = Spending_History(session['email'], session['password'])
+    df = myobj.webpage_to_dataframe()
+
+    flash('GWorld Dining Dollars Data Updated!')
+
+    return render_template('index.html')
+
+
+
+@app.route('/spending_graph', methods=['GET', 'POST'])
+def spending_history():
+    if not session.get('logged_in'):
+        return render_template('index.html')
+    else:
+        df = graphed_spending()
+        graph = dict(
+            data=[go.Scatter(
+                x=df.index,
+                y=df['currentval']
+            )],
+            layout=dict(
+                title='Scatter Plot',
+                yaxis=dict(
+                    title="Spending"
+                ),
+                xaxis=dict(
+                    title="Date"
+                )
+            )
+        )
+        graphJSON = json.dumps(graph, cls=plotly.utils.PlotlyJSONEncoder)
+        graphJSON = Markup(graphJSON)
+
+        return render_template('spending_history.html', graphJSON=graphJSON)
+
+
+
+
+
+@socketio.on('disconnect')
+def disconnect_user():
+    session.clear()
+    session.pop('random-key', None)
 
 
 # ======== Main ============================================================== #
