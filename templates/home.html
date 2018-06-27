@@ -1,7 +1,42 @@
 {% extends "base.html" %} {% block body %} {% include "navbar.html" %}
 <section class="hero is-primary is-bold is-large">
-	<div class="hero-body"></div>
+	<div class="hero-body">
+
+		<title>DineMore</title>
+
+		<div class="container has-text-centered">
+			<div class="columns">
+
+				<div class="column is-auto">
+					<p class="title is-2">DineMore</p>
+				</p>
+				{% with messages = get_flashed_messages() %}
+				{% if messages %}
+				<ul class=flashes>
+					{% for message in messages %}
+					<li>{{ message }}</li>
+					{% endfor %}
+				</ul>
+				{% endif %}
+				{% endwith %}
+				hello
+			</div>
+			
+			<div class="column is-auto">
+				more test
+			</div>
+			
+			<div class="column is-auto">
+				another column
+			</div>
+
+
+		</div>
+
+	</div>
 </section>
+
+
 {% endblock %} {% block scripts %}
 <script src="../static/js/scripts.js"></script>
 {% endblock %}
