@@ -18,6 +18,8 @@ from flask_socketio import SocketIO, emit
 # from spending import Spending_History
 
 app = Flask(__name__)
+app.secret_key = os.urandom(12)  # Generic key for dev purposes only
+
 socketio = SocketIO(app)
 
 
@@ -135,5 +137,4 @@ def disconnect_user():
 
 # ======== Main ============================================================== #
 if __name__ == "__main__":
-    app.secret_key = os.urandom(12)  # Generic key for dev purposes only
     app.run(debug=True, use_reloader=True)
