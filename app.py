@@ -14,12 +14,12 @@ from scripts import helpers
 from flask import Flask, redirect, url_for, render_template, request, session, flash, Markup
 from flask_socketio import SocketIO, emit
 
-from stats import graphed_spending
-from spending import Spending_History
+# from stats import graphed_spending
+# from spending import Spending_History
 
 app = Flask(__name__)
 socketio = SocketIO(app)
- 
+
 
 # ======== Routing =========================================================== #
 # -------- Login ------------------------------------------------------------- #
@@ -89,15 +89,15 @@ def settings():
     return redirect(url_for('login'))
 
 
-@app.route('/refresh', methods=['GET', 'POST'])
-def refresh():
-
-    myobj = Spending_History(session['email'], session['password'])
-    df = myobj.webpage_to_dataframe()
-
-    flash('GWorld Dining Dollars Data Updated!')
-
-    return render_template('home.html')
+# @app.route('/refresh', methods=['GET', 'POST'])
+# def refresh():
+#
+#     myobj = Spending_History(session['email'], session['password'])
+#     df = myobj.webpage_to_dataframe()
+#
+#     flash('GWorld Dining Dollars Data Updated!')
+#
+#     return render_template('home.html')
 
 
 # @app.route('/spending_graph', methods=['GET', 'POST'])
