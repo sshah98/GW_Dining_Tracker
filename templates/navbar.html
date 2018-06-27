@@ -2,8 +2,8 @@
 	<nav class="navbar is-transparent">
 		<div class="navbar-brand">
 			<a class="navbar-item" href="/">
-        <img src="https://github.com/anfederico/Flaskex/raw/master/media/flaskex-logo.png" alt="Flaskex_logo">
-        <h6 href="/" class="subtitle"><strong>Flaskex</strong></h6>
+				<img src="../static/dinelesslogo.ico" alt="DineLess">
+        <h6 href="/" class="subtitle"><strong>DineLess</strong></h6>
       </a>
 			<a class="navbar-item" href="/spending_graph">
 				<h6 href="/spending_graph" class="subtitle">Spending History</h6>
@@ -24,15 +24,22 @@
 				<div class="navbar-item">
 					<div class="field is-grouped">
 						<p class="control">
-							<a href="/logout" class="button is-primary is-outlined">
-                <span>Logout</span>
-              </a>
+							<a href="/info" class="button is-primary is-outlined">
+								<span id="cog" class="icon">
+									<i class="fas fa-info"></i>
+								</span>
+							</a>
 						</p>
 						<p class="control">
 							<a href="/settings" class="button is-primary is-outlined">
-                <span id="cog" class="icon">
-                  <i class="fa fa fa-cog"></i>
-                </span>
+								<span id="cog" class="icon">
+									<i class="fa fa fa-cog"></i>
+								</span>
+							</a>
+						</p>
+						<p class="control">
+							<a href="/logout" class="button is-primary is-outlined">
+                <span>Logout</span>
               </a>
 						</p>
 					</div>
