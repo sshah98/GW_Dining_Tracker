@@ -46,6 +46,7 @@ class SpendingHistory():
             driver.get("https://get.cbord.com/gwu/full/history.php")
 
             soup = BeautifulSoup(driver.page_source, "lxml")
+            driver.close()
 
             print("found data")
 
@@ -102,6 +103,4 @@ class SpendingHistory():
 
         except NoSuchElementException as e:
             print("No internet connection")
-
-        finally:
-            driver.close()
+            
