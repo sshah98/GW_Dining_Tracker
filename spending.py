@@ -13,8 +13,8 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.by import By
 
-# CHROMEDRIVER_PATH = os.environ['CHROMEDRIVER_PATH']
-# GOOGLE_CHROME_BIN = os.environ['GOOGLE_CHROME_BIN']
+CHROMEDRIVER_PATH = os.environ['CHROMEDRIVER_PATH']
+GOOGLE_CHROME_BIN = os.environ['GOOGLE_CHROME_BIN']
 
 
 class SpendingHistory():
@@ -27,15 +27,14 @@ class SpendingHistory():
 
         try:
             options = Options()
-            # options.binary_location = GOOGLE_CHROME_BIN
+            options.binary_location = GOOGLE_CHROME_BIN
             options.add_argument('--disable-gpu')
             options.add_argument('--no-sandbox')
             options.add_argument('--headless')
             options.add_argument("--disable-extensions")
 
-            driver = webdriver.Chrome(
-                executable_path='chromedriver', chrome_options=options)
-            # driver = webdriver.Chrome(executable_path=CHROMEDRIVER_PATH, chrome_options=options)
+            # driver = webdriver.Chrome(executable_path='chromedriver', chrome_options=options)
+            driver = webdriver.Chrome(executable_path=CHROMEDRIVER_PATH, chrome_options=options)
             print("opening chrome")
 
             driver.get("https://get.cbord.com/gwu/full/login.php")
