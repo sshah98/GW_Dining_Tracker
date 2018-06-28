@@ -13,9 +13,13 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.by import By
 
+# --- local testing --- #
+# CHROMEDRIVER_PATH = os.environ['CHROMEDRIVER_PATH']
+# GOOGLE_CHROME_BIN = os.environ['GOOGLE_CHROME_BIN']
+
+# --- heroku --- #
 CHROMEDRIVER_PATH = os.environ['CHROMEDRIVER_PATH']
 GOOGLE_CHROME_BIN = os.environ['GOOGLE_CHROME_BIN']
-
 
 class SpendingHistory():
 
@@ -26,15 +30,26 @@ class SpendingHistory():
     def spending_history(self):
 
         try:
+
+            # --- local testing --- #
+            # options.binary_location = GOOGLE_CHROME_BIN
+
             options = Options()
+
+            # --- heroku --- #
             options.binary_location = GOOGLE_CHROME_BIN
+
             options.add_argument('--disable-gpu')
             options.add_argument('--no-sandbox')
             options.add_argument('--headless')
             options.add_argument("--disable-extensions")
 
+            # --- local testing --- #
             # driver = webdriver.Chrome(executable_path='chromedriver', chrome_options=options)
+
+            # --- heroku --- #
             driver = webdriver.Chrome(executable_path=CHROMEDRIVER_PATH, chrome_options=options)
+
             print("opening chrome")
 
             driver.get("https://get.cbord.com/gwu/full/login.php")
@@ -53,6 +68,7 @@ class SpendingHistory():
             try:
                 table = soup.find(
                     "table", {"class": "table table-striped table-bordered"})
+
                 # formatting before converting to dataframe
                 items = list(table.stripped_strings)
                 items = [elem for elem in items if elem.strip(",")]
@@ -62,8 +78,7 @@ class SpendingHistory():
                 # more cleaning data
                 df = pd.DataFrame(items)
                 df = df.astype(str)
-                df[4] = df[4].replace(
-                    {'\$': '', '\+ ': '', '- ': '-'}, regex=True)
+                df[4] = df[4].replace({'\$': '', '\+ ': '', '- ': '-'}, regex=True)
                 df[4] = df[4].astype(np.float64)
 
                 # converts day, month, year time to proper format
@@ -86,8 +101,11 @@ class SpendingHistory():
                 df.drop(columns=['date', 'time'], inplace=True)
                 df.sort_values(by='datetime', inplace=True, ascending=True)
 
-                engine = create_engine(
-                    "postgresql://suraj:password@localhost/gworld")
+                # --- local testing --- #
+                # engine = create_engine("postgresql://suraj:password@localhost/gworld")
+
+                # --- heroku --- #
+                engine = create_engine("postgresql+psycopg2://gvbgcpweihoipq:d52e382574f9ad2313c882534fb07ceb52484e04f112b3e405c3e9ee441048b2@ec2-54-235-206-118.compute-1.amazonaws.com:5432/d4n9qk3lo1qsr2")
 
                 for i in range(len(df)):
                     try:
