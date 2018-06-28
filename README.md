@@ -1,11 +1,18 @@
-<h1 align="center"><a href="https://dinemore.herokuapp.com/">DineMore<a><p>
 <p align="center"><img src="https://raw.githubusercontent.com/sshah98/DineMore/master/static/dinemorelogo.ico?token=AbbsakSrIv8la7IbMJSa4lCRbMEMkQeSks5bPjyjwA%3D%3D" width="128px"><p>
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 ![Python](https://img.shields.io/badge/python-v3.6-blue.svg)
 ![Dependencies](https://img.shields.io/badge/dependencies-up%20to%20date-brightgreen.svg)
 [![GitHub Issues](https://img.shields.io/github/issues/anfederico/flaskex.svg)](https://github.com/sshah98/DineMore/issues)
 ![Contributions welcome](https://img.shields.io/badge/contributions-welcome-orange.svg)
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](https://opensource.org/licenses/MIT)
+
 <br><br>
+
+# [DineMore](https://dinemore.herokuapp.com)
+
+
 
 ## What is DineMore
 
@@ -36,16 +43,15 @@ A Flask application with a web interface allows the user to interact with the in
 Please go to the main page [here](https://dinemore.herokuapp.com/)
 
 ## Setup
-``` 
-git clone https://github.com/sshah98/DineMore
-cd DineMore
-pip install -r requirements.txt
-```
+
+    git clone https://github.com/sshah98/DineMore
+    cd DineMore
+    pip install -r requirements.txt
+
 comment heroku lines in `spending.py`
-```
-export DATABASE_URL="postgresql://user:password@localhost/database"
-python app.py
-```
+
+    export DATABASE_URL="postgresql://user:password@localhost/database"
+    python app.py
 
 ## Contributing
 
