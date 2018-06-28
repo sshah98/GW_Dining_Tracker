@@ -9,30 +9,27 @@
 
 				<div class="column is-auto">
 					<p class="title is-2">DineMore</p>
-				{% with messages = get_flashed_messages() %}
-				{% if messages %}
-				<ul class=flashes>
-					{% for message in messages %}
-					<li>{{ message }}</li>
-					{% endfor %}
-				</ul>
-				{% endif %}
-				{% endwith %}
-				hello
-			</div>
-			
-			<div class="column is-auto">
-				more test
-			</div>
-			
-			<div class="column is-auto">
-				another column
-			</div>
+					{% with messages = get_flashed_messages() %} {% if messages %}
+					<ul class=flashes>
+						{% for message in messages %}
+						<li>{{ message }}</li>
+						{% endfor %}
+					</ul>
+					{% endif %} {% endwith %} Put some graphs here
+				</div>
 
+				<div class="column is-auto">
+					more test
+				</div>
+
+				<div class="column is-auto">
+					another column
+				</div>
+
+
+			</div>
 
 		</div>
-
-	</div>
 </section>
 <section class="hero">
 	<footer class="footer">

@@ -45,6 +45,12 @@ def login():
         return render_template('login.html', form=form)
     user = helpers.get_user()
     session['email'] = user.email
+    
+    
+    
+    
+    
+    
     return render_template('home.html', user=user)
 
 
