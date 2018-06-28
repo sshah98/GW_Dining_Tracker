@@ -46,12 +46,22 @@ def login():
     user = helpers.get_user()
     session['email'] = user.email
     
+    df = pd.read_sql_query("SELECT * FROM history WHERE email='%s'" % (session['email']), database)
+        
+    if df.empty:
+        return redirect(url_for('refresh'))
     
-    
-    
-    
-    
-    return render_template('home.html', user=user)
+    else:
+        df['currentval'] = np.nan
+        df['currentval'] = df['price'] - df['currentval']
+        df.currentval = 1350 + df.price.cumsum()
+        df.drop(columns=['date', 'time'], inplace=True)
+        df.set_index('datetime', inplace=True)
+        print(df)
+        graphs = 0
+        return render_template('home.html', user=user, graphs=graphs)
+
+
 
 
 @app.route("/logout")
@@ -106,6 +116,7 @@ def info():
     else:
         return redirect(url_for('login'))
 
+
 @app.route('/refresh', methods=['GET', 'POST'])
 def refresh():
 
@@ -122,15 +133,17 @@ def spending_history():
     if not session.get('logged_in'):
         form = forms.LoginForm(request.form)
     else:
- 
+
         initial_gworld = 1350
 
-        df = pd.read_sql_query("SELECT * FROM history WHERE email='%s'" %(session['email']), database)
+        df = pd.read_sql_query(
+            "SELECT * FROM history WHERE email='%s'" % (session['email']), database)
         df['currentval'] = np.nan
         df['currentval'] = df['price'] - df['currentval']
         df.currentval = initial_gworld + df.price.cumsum()
+        df.drop(columns=['date', 'time'], inplace=True)
         df.set_index('datetime', inplace=True)
-        
+
         graph = dict(
             data=[go.Scatter(
                 x=df.index,

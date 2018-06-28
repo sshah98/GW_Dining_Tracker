@@ -13,9 +13,6 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.by import By
 
-# --- heroku --- #
-CHROMEDRIVER_PATH = os.environ['CHROMEDRIVER_PATH']
-GOOGLE_CHROME_BIN = os.environ['GOOGLE_CHROME_BIN']
 
 class SpendingHistory():
 
@@ -30,7 +27,7 @@ class SpendingHistory():
             options = Options()
 
             # --- heroku --- #
-            options.binary_location = GOOGLE_CHROME_BIN
+            options.binary_location = os.environ['GOOGLE_CHROME_BIN']
 
             options.add_argument('--disable-gpu')
             options.add_argument('--no-sandbox')
@@ -41,7 +38,7 @@ class SpendingHistory():
             # driver = webdriver.Chrome(executable_path='chromedriver', chrome_options=options)
 
             # --- heroku --- #
-            driver = webdriver.Chrome(executable_path=CHROMEDRIVER_PATH, chrome_options=options)
+            driver = webdriver.Chrome(executable_path=os.environ['CHROMEDRIVER_PATH'], chrome_options=options)
 
             print("opening chrome")
 
@@ -71,7 +68,8 @@ class SpendingHistory():
                 # more cleaning data
                 df = pd.DataFrame(items)
                 df = df.astype(str)
-                df[4] = df[4].replace({'\$': '', '\+ ': '', '- ': '-'}, regex=True)
+                df[4] = df[4].replace(
+                    {'\$': '', '\+ ': '', '- ': '-'}, regex=True)
                 df[4] = df[4].astype(np.float64)
 
                 # converts day, month, year time to proper format
@@ -94,6 +92,8 @@ class SpendingHistory():
                 df.drop(columns=['date', 'time'], inplace=True)
                 df.sort_values(by='datetime', inplace=True, ascending=True)
 
+                print(df)
+
                 # --- local testing --- #
                 # engine = create_engine("postgresql://suraj:password@localhost/gworld")
 
@@ -114,4 +114,3 @@ class SpendingHistory():
 
         except NoSuchElementException as e:
             print("No internet connection")
-            
