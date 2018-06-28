@@ -21,6 +21,8 @@ app = Flask(__name__)
 app.secret_key = 'random-key'  # Generic key for dev purposes only
 
 socketio = SocketIO(app)
+DATABASE_URL = os.environ['DATABASE_URL']
+database = psycopg2.connect(DATABASE_URL, sslmode='allow')
 
 
 # ======== Routing =========================================================== #
@@ -118,8 +120,14 @@ def spending_history():
         
         # database = tabledef.db_connect()=
         # print(database)
+
+        df = pd.read_sql_query("SELECT * FROM history WHERE email=session['email']", database)
+        df['currentval'] = np.nan
+        df['currentval'] = df['price'] - df['currentval']
+        df.currentval = initial_gworld + df.price.cumsum()
+        df.set_index('datetime', inplace=True)
         
-        df = graphed_spending()
+        # df = graphed_spending()
 
         graph = dict(
             data=[go.Scatter(
