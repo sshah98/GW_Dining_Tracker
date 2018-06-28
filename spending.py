@@ -13,10 +13,6 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.by import By
 
-# --- local testing --- #
-# CHROMEDRIVER_PATH = os.environ['CHROMEDRIVER_PATH']
-# GOOGLE_CHROME_BIN = os.environ['GOOGLE_CHROME_BIN']
-
 # --- heroku --- #
 CHROMEDRIVER_PATH = os.environ['CHROMEDRIVER_PATH']
 GOOGLE_CHROME_BIN = os.environ['GOOGLE_CHROME_BIN']
@@ -30,9 +26,6 @@ class SpendingHistory():
     def spending_history(self):
 
         try:
-
-            # --- local testing --- #
-            # options.binary_location = GOOGLE_CHROME_BIN
 
             options = Options()
 

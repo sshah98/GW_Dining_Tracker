@@ -3,6 +3,7 @@ import json
 import sys
 import os
 import plotly
+import psycopg2
 import pandas as pd
 import numpy as np
 import plotly.graph_objs as go
@@ -15,7 +16,6 @@ from flask import Flask, redirect, url_for, render_template, request, session, f
 from flask_socketio import SocketIO, emit
 
 from spending import SpendingHistory
-from stats import graphed_spending
 
 app = Flask(__name__)
 app.secret_key = 'random-key'  # Generic key for dev purposes only
@@ -116,19 +116,15 @@ def spending_history():
     if not session.get('logged_in'):
         form = forms.LoginForm(request.form)
     else:
-        # df = pd.read_json(session['spending'])
-        
-        # database = tabledef.db_connect()=
-        # print(database)
+ 
+        initial_gworld = 1350
 
-        df = pd.read_sql_query("SELECT * FROM history WHERE email=session['email']", database)
+        df = pd.read_sql_query("SELECT * FROM history WHERE email='%s'" %(session['email']), database)
         df['currentval'] = np.nan
         df['currentval'] = df['price'] - df['currentval']
         df.currentval = initial_gworld + df.price.cumsum()
         df.set_index('datetime', inplace=True)
         
-        # df = graphed_spending()
-
         graph = dict(
             data=[go.Scatter(
                 x=df.index,
@@ -146,7 +142,6 @@ def spending_history():
         )
         graphJSON = json.dumps(graph, cls=plotly.utils.PlotlyJSONEncoder)
         # graphJSON = Markup(graphJSON)
-        print(graphJSON)
 
         return render_template('spending_history.html', graphJSON=graphJSON)
 
