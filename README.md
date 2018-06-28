@@ -1,12 +1,10 @@
 <p align="center"><img src="https://raw.githubusercontent.com/sshah98/DineMore/master/static/dinemorelogo.ico?token=AbbsakSrIv8la7IbMJSa4lCRbMEMkQeSks5bPjyjwA%3D%3D" width="128px"></p>
 <h1 align="center"><a href="https://dinemore.herokuapp.com/">DineMore</a></h1>
-<p align="center">
 ![Python](https://img.shields.io/badge/python-v3.6-blue.svg)
 ![Dependencies](https://img.shields.io/badge/dependencies-up%20to%20date-brightgreen.svg)
 [![GitHub Issues](https://img.shields.io/github/issues/anfederico/flaskex.svg)](https://github.com/sshah98/DineMore/issues)
 ![Contributions welcome](https://img.shields.io/badge/contributions-welcome-orange.svg)
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](https://opensource.org/licenses/MIT)
-</p>
 
 ## What is DineMore
 
