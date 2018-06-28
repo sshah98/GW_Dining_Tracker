@@ -14,7 +14,7 @@ from scripts import helpers
 from flask import Flask, redirect, url_for, render_template, request, session, flash, Markup
 from flask_socketio import SocketIO, emit
 
-from spending import Spending_History
+from spending import SpendingHistory
 from stats import graphed_spending
 
 app = Flask(__name__)
@@ -101,10 +101,8 @@ def info():
 @app.route('/refresh', methods=['GET', 'POST'])
 def refresh():
 
-    session['spending'] = Spending_History(session['email'], session['password']).webpage_to_dataframe().to_json()
+    SpendingHistory(session['email'], session['password']).spending_history()
     # print(session['spending'])
-
-
 
     flash('GWorld Dining Dollars Data Updated!')
 
@@ -116,18 +114,20 @@ def spending_history():
     if not session.get('logged_in'):
         form = forms.LoginForm(request.form)
     else:
-
         # df = pd.read_json(session['spending'])
         
+        # database = tabledef.db_connect()=
+        # print(database)
+        
         df = graphed_spending()
-        # print(session['spending'])
+
         graph = dict(
             data=[go.Scatter(
                 x=df.index,
                 y=df['currentval']
             )],
             layout=dict(
-                title='Scatter Plot',
+                title='Total Spending By Day',
                 yaxis=dict(
                     title="Spending"
                 ),
@@ -137,7 +137,8 @@ def spending_history():
             )
         )
         graphJSON = json.dumps(graph, cls=plotly.utils.PlotlyJSONEncoder)
-        graphJSON = Markup(graphJSON)
+        # graphJSON = Markup(graphJSON)
+        print(graphJSON)
 
         return render_template('spending_history.html', graphJSON=graphJSON)
 

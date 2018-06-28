@@ -15,7 +15,7 @@ import os
 import psycopg2
 
 DATABASE_URL = os.environ['DATABASE_URL']
-database = psycopg2.connect(DATABASE_URL, sslmode='require')
+database = psycopg2.connect(DATABASE_URL, sslmode='allow')
 
 
 def graphed_spending():
@@ -33,7 +33,6 @@ def graphed_spending():
     return df
 
 
-# graphed_spending()
 
 # df['date'] = pd.to_datetime(df['date'])
 # df['date_delta'] = (df['date'] - df['date'].min())  / np.timedelta64(1,'D')

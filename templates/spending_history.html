@@ -7,8 +7,9 @@
 		<div class="container has-text-centered">
 			<div class="columns">
 				<div class="column is-auto">
+					<p class="title is-2">Total Spending</p>
 
-					<div id="graph">GRAPH HERE
+					<div id="graph-0"></div>
 
 
 					</div>
@@ -51,11 +52,19 @@
 	</footer>
 </section>
 
+<footer>
+    <!-- D3.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.6/d3.min.js"></script>
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+    <!-- Plotly.js -->
+    <script src="https://d14fo0winaifog.cloudfront.net/plotly-basic.js"></script>
 
-{% endblock %} {% block scripts %}
-<script src="../static/js/scripts.js"></script>
-						<script type="text/javascript">
-							var graph = {{ 	graphJSON | safe }};
-							Plotly.plot("graph", graph.data, graph.layout);
-						</script>
-{% endblock %}
+    <script type="text/javascript">
+		var graph = {{graphJSON | safe}};
+		Plotly.plot("graph-0", graph.data, graph.layout);
+    </script>
+</footer>
+
+</html>
+{% endblock %} 

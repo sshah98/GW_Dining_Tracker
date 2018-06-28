@@ -9,7 +9,6 @@
 
 				<div class="column is-auto">
 					<p class="title is-2">DineMore</p>
-				</p>
 				{% with messages = get_flashed_messages() %}
 				{% if messages %}
 				<ul class=flashes>
@@ -35,7 +34,34 @@
 
 	</div>
 </section>
-
+<section class="hero">
+	<footer class="footer">
+		<div class="container">
+			<div class="content has-text-centered">
+				<center>
+					<p>
+						<strong>DineMore</strong> by Suraj Shah
+						<br/>
+						<span class="icon is-small">&#169;
+          </span>2018</a>
+					</p>
+				</center>
+				<br/>
+				<p>
+					<a class="icon has-text-primary" href="http://surajshah.me" target="_blank">
+            <i class="fas fa-globe-americas"></i>
+          </a>
+					<a class="icon has-text-primary" href="https://github.com/sshah98" target="_blank">
+            <i class="fab fa-github"></i>
+          </a>
+					<a class="icon has-text-primary" href="mailto:shahsuraj261@gmail.com" target="_blank">
+            <i class="fas fa-envelope"></i>
+          </a>
+				</p>
+			</div>
+		</div>
+	</footer>
+</section>
 
 {% endblock %} {% block scripts %}
 <script src="../static/js/scripts.js"></script>
