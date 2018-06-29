@@ -54,7 +54,7 @@ def home():
 
             graphs = 0
             
-            return render_template('home.html', user=name, graphs=graphs)
+            return render_template('home2.html', user=name, graphs=graphs)
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
