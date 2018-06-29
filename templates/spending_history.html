@@ -1,70 +1,40 @@
-{% extends "base.html" %} {% block body %} {% include "navbar.html" %}
-<section class="hero is-primary is-bold is-large">
-	<div class="hero-body">
+{% extends "layout.html" %} {% block title %}Home {% endblock %} {% block content %}
+<div class="container" style="width:100%;">
 
-		<title>DineMore</title>
+	<nav class="navbar">
+		<div class="navbar-header">
 
-		<div class="container has-text-centered">
-			<div class="columns">
-				<div class="column is-auto">
-					<p class="title is-2">Total Spending</p>
-
-					<div id="graph-0"></div>
-
-
-					</div>
-
-				</div>
-			</div>
-
-
+			<span class="navbar-brand"><a href="/" style="text-decoration:none">DineMore</a></span>
 		</div>
-	</div>
+		<ul class="nav navbar-nav">
+
+			<li><a href="/logout">Logout</a></li>
+			<li><a href="/refresh">Refresh</a></li>
+			<li><a href="/spending_graph">Spending Graph</a></li>
+
+
+		</ul>
+	</nav>
 </div>
-</section>
-<section class="hero">
-	<footer class="footer">
-		<div class="container">
-			<div class="content has-text-centered">
-				<center>
-					<p>
-						<strong>DineMore</strong> by Suraj Shah
-						<br/>
-						<span class="icon is-small">&#169;
-						</span>2018</a>
-					</p>
-				</center>
-				<br/>
 
-				<p>
-					<a class="icon has-text-primary" href="http://surajshah.me" target="_blank">
-						<i class="fas fa-globe-americas"></i>
-					</a>
-					<a class="icon has-text-primary" href="https://github.com/sshah98" target="_blank">
-						<i class="fab fa-github"></i>
-					</a>
-					<a class="icon has-text-primary" href="mailto:shahsuraj261@gmail.com" target="_blank">
-						<i class="fas fa-envelope"></i>
-					</a>
-				</p>
-			</div>
-		</div>
-	</footer>
-</section>
+<html>
+
+<head>
+</head>
+
+<body>
+	<h3>Spending History</h3>
+	<div id="graph-0"></div>
+
+</body>
+
 
 <footer>
-    <!-- D3.js -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.6/d3.min.js"></script>
-    <!-- jQuery -->
-    <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
-    <!-- Plotly.js -->
-    <script src="https://d14fo0winaifog.cloudfront.net/plotly-basic.js"></script>
-
-    <script type="text/javascript">
-		var graph = {{graphJSON | safe}};
-		Plotly.plot("graph-0", graph.data, graph.layout);
-    </script>
+	<script type="text/javascript">
+	var graph = {{graphJSON | safe}};
+	Plotly.plot("graph-0", graph.data, graph.layout);
+	</script>
 </footer>
 
 </html>
-{% endblock %} 
+{% endblock %}

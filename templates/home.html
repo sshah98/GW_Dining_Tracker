@@ -1,65 +1,46 @@
-{% extends "base.html" %} {% block body %} {% include "navbar.html" %}
-<section class="hero is-primary is-bold is-large">
-	<div class="hero-body">
+{% extends "layout.html" %} {% block title %}Home {% endblock %} {% block content %} {% if session['logged_in'] %}
+<div class="container" style="width:100%;">
 
-		<title>DineMore</title>
+	<nav class="navbar">
+		<div class="navbar-header">
 
-		<div class="container has-text-centered">
-			<div class="columns">
-
-				<div class="column is-auto">
-					<p class="title is-2">DineMore</p>
-					{% with messages = get_flashed_messages() %} {% if messages %}
-					<ul class=flashes>
-						{% for message in messages %}
-						<li>{{ message }}</li>
-						{% endfor %}
-					</ul>
-					{% endif %} {% endwith %} Put some graphs here
-				</div>
-
-				<div class="column is-auto">
-					more test
-				</div>
-
-				<div class="column is-auto">
-					another column
-				</div>
-
-
-			</div>
-
+			<span class="navbar-brand"><a href="/" style="text-decoration:none">DineMore</a></span>
 		</div>
-</section>
-<section class="hero">
-	<footer class="footer">
-		<div class="container">
-			<div class="content has-text-centered">
-				<center>
-					<p>
-						<strong>DineMore</strong> by Suraj Shah
-						<br/>
-						<span class="icon is-small">&#169;
-          </span>2018</a>
-					</p>
-				</center>
-				<br/>
-				<p>
-					<a class="icon has-text-primary" href="http://surajshah.me" target="_blank">
-            <i class="fas fa-globe-americas"></i>
-          </a>
-					<a class="icon has-text-primary" href="https://github.com/sshah98" target="_blank">
-            <i class="fab fa-github"></i>
-          </a>
-					<a class="icon has-text-primary" href="mailto:shahsuraj261@gmail.com" target="_blank">
-            <i class="fas fa-envelope"></i>
-          </a>
-				</p>
-			</div>
-		</div>
-	</footer>
-</section>
+		<ul class="nav navbar-nav">
 
-{% endblock %} {% block scripts %}
-<script src="../static/js/scripts.js"></script>
-{% endblock %}
+			<li><a href="/logout">Logout</a></li>
+			<li><a href="/refresh">Refresh</a></li>
+			<li><a href="/spending_graph">Spending Graph</a></li>
+
+
+		</ul>
+	</nav>
+</div>
+
+
+<div class="container" style="width:100%;">
+
+	<div class="row-center">
+
+		<h3>Welcome <b>{{user}}</b>!</h3>
+		<h4>Add information about dining app here. Links at top for other things</h4>
+
+	</div>
+</div>
+
+{% else %}
+
+<div class="container" style="width:100%;">
+
+	<div class="row-center">
+
+		<h3>Login to access data!</h3>
+
+		<h3><a href="/login">Login</a></h3>
+		<h3><a href="/register">Register</a></h3>
+
+	</div>
+</div>
+
+
+{% endif %} {% endblock %}

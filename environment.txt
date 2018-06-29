@@ -7,3 +7,4 @@ export CHROMEDRIVER_PATH="/app/.chromedriver/bin/chromedriver"
 Local
 source env/bin/activate
 export DATABASE_URL="postgresql://suraj:password@localhost/gworld"
+export APP_SETTINGS="config.DevelopmentConfig"
