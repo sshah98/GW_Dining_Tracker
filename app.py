@@ -131,7 +131,7 @@ def refresh():
     SpendingHistory(session['email'], session['pass']).spending_history()
     # print(session['spending'])
 
-    flash('GWorld Dining Dollars Data Updated!')
+    flash(Markup("<p><center>GWorld Dining Dollars Updated!</center></p>"))
 
     return redirect(url_for('home'))
 
@@ -190,6 +190,8 @@ def settings():
             user = User.query.filter_by(email=session['email']).first()
             user.password = hashed_pass
             db.session.commit()
+
+        flash(Markup("<p><center>User Information Updated!</center></p>"))
 
         return render_template('settings.html', user=session['email'])
 

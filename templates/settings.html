@@ -57,6 +57,13 @@
 				<section>
 					<h2>User Settings</h2>
 					<h4>Please update your settings here</h4>
+					{% with messages = get_flashed_messages() %} {% if messages %}
+					<p class=flashes>
+						{% for message in messages %}
+						<p>{{ message }}</p>
+						{% endfor %}
+					</p>
+					{% endif %} {% endwith %}
 					<form method="POST" action="/settings">
 						<div class="row gtr-uniform">
 							<div class="col-6 col-12-xsmall">

@@ -1,8 +1,8 @@
 <!DOCTYPE HTML>
 <!--
-	Phantom by HTML5 UP
-	html5up.net | @ajlkn
-	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+Phantom by HTML5 UP
+html5up.net | @ajlkn
+Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
 -->
 <html>
 
@@ -14,7 +14,7 @@
 	<noscript><link rel="stylesheet" href="../static/assets2/css/noscript.css" /></noscript>
 	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous">
 	<link rel="icon" type="image/png" href="../static/assets/images/icons/favicon.ico" />
-
+	
 	<!-- D3.js -->
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.6/d3.min.js"></script>
 	<!-- jQuery -->
@@ -26,24 +26,24 @@
 <body class="is-preload">
 	<!-- Wrapper -->
 	<div id="wrapper">
-
+		
 		<!-- Header -->
 		<header id="header">
 			<div class="inner">
-
+				
 				<!-- Logo -->
 				<a href="/" class="logo"><span class="symbol"><img src="/static/assets/images/dinemorelogo.ico" alt="" /></span><span class="title">DineMore</span></a>
-
+				
 				<!-- Nav -->
 				<nav>
 					<ul>
 						<li><a href="#menu">Menu</a></li>
 					</ul>
 				</nav>
-
+				
 			</div>
 		</header>
-
+		
 		<!-- Menu -->
 		<nav id="menu">
 			<h2>Menu</h2>
@@ -56,30 +56,34 @@
 				<li><a href="/logout">Logout</a></li>
 			</ul>
 		</nav>
-
+		
 		<!-- Main -->
 		<div id="main">
 			<div class="inner">
-				<h1>Generic Page</h1>
-				<span class="image main"><img src="/static/images/pic13.jpg" alt="" /></span>
-					<h3>Spending History</h3>
-					<div id="graph-0"></div>
-
-
+				<h1>Spending History</h1>
+				<div id="graph-0"></div>
+				{% with messages = get_flashed_messages() %} {% if messages %}
+				<p class=flashes>
+					{% for message in messages %}
+					<p>{{ message }}</p>
+					{% endfor %}
+				</p>
+				{% endif %} {% endwith %}
+				
 				<footer>
 					<script type="text/javascript">
 					var graph = {{graphJSON | safe}};
 					Plotly.plot("graph-0", graph.data, graph.layout);
 					</script>
 				</footer>
-
+				
 			</div>
 		</div>
-
+		
 		<!-- Footer -->
 		<footer id="footer">
 			<center>
-
+				
 				<div class="inner">
 					&copy; Suraj Shah. All rights reserved
 					<br/>
@@ -90,18 +94,18 @@
 					Design: <a href="http://html5up.net">HTML5 UP</a>
 				</div>
 			</center>
-
+			
 		</footer>
-
+		
 	</div>
-
+	
 	<!-- Scripts -->
 	<script src="../static/assets2/js/jquery.min.js"></script>
 	<script src="../static/assets2/js/browser.min.js"></script>
 	<script src="../static/assets2/js/breakpoints.min.js"></script>
 	<script src="../static/assets2/js/util.js"></script>
 	<script src="../static/assets2/js/main.js"></script>
-
+	
 </body>
 
 </html>
