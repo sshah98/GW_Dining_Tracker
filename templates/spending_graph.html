@@ -15,6 +15,12 @@
 	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous">
 	<link rel="icon" type="image/png" href="../static/assets/images/icons/favicon.ico" />
 
+	<!-- D3.js -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.6/d3.min.js"></script>
+	<!-- jQuery -->
+	<script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+	<!-- Plotly.js -->
+	<script src="https://d14fo0winaifog.cloudfront.net/plotly-basic.js"></script>
 </head>
 
 <body class="is-preload">
@@ -54,12 +60,18 @@
 		<!-- Main -->
 		<div id="main">
 			<div class="inner">
-				<h1>Home</h1>
-				<p>Welcome to DineMore, the only app aimed to help you save your dining dollars at GWU!
-				</p>
-				<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis dapibus rutrum facilisis. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Etiam tristique libero eu nibh porttitor fermentum. Nullam venenatis
-					erat id vehicula viverra. Nunc ultrices eros ut ultricies condimentum. Mauris risus lacus, blandit sit amet venenatis non, bibendum vitae dolor. Nunc lorem mauris, fringilla in aliquam at, euismod in lectus. Pellentesque habitant morbi tristique
-					senectus et netus et malesuada fames ac turpis egestas. In non lorem sit amet elit placerat maximus. Pellentesque aliquam maximus risus, vel venenatis mauris vehicula hendrerit.</p>
+				<h1>Generic Page</h1>
+				<span class="image main"><img src="/static/images/pic13.jpg" alt="" /></span>
+					<h3>Spending History</h3>
+					<div id="graph-0"></div>
+
+
+				<footer>
+					<script type="text/javascript">
+					var graph = {{graphJSON | safe}};
+					Plotly.plot("graph-0", graph.data, graph.layout);
+					</script>
+				</footer>
 
 			</div>
 		</div>

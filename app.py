@@ -36,25 +36,23 @@ def home():
     if not session.get('logged_in'):
         return render_template('login.html')
     else:
-        if 'email' in session:
-            name = session['email'].split("@")[0]
+        # df = pd.read_sql_query(
+        #     "SELECT * FROM history WHERE email='%s'" % (session['email']), database)
+        #
+        # if df.empty:
+        #     return redirect(url_for('refresh'))
+        #
+        # else:
+        #     df['currentval'] = np.nan
+        #     df['currentval'] = df['price'] - df['currentval']
+        #     df.currentval = 1350 + df.price.cumsum()
+        #     df.drop(columns=['date', 'time'], inplace=True)
+        #     df.set_index('datetime', inplace=True)
 
-            # df = pd.read_sql_query(
-            #     "SELECT * FROM history WHERE email='%s'" % (session['email']), database)
-            # 
-            # if df.empty:
-            #     return redirect(url_for('refresh'))
-            # 
-            # else:
-            #     df['currentval'] = np.nan
-            #     df['currentval'] = df['price'] - df['currentval']
-            #     df.currentval = 1350 + df.price.cumsum()
-            #     df.drop(columns=['date', 'time'], inplace=True)
-            #     df.set_index('datetime', inplace=True)
+        graphs = 0
 
-            graphs = 0
-            
-            return render_template('home2.html', user=name, graphs=graphs)
+        return render_template('home.html', user=session['name'], graphs=graphs)
+
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
@@ -77,13 +75,15 @@ def login():
                 session['logged_in'] = True
                 session['email'] = request.form['email']
                 session['pass'] = request.form['pass']
+                session['name'] = session['email'].split("@")[0]
 
                 return redirect(url_for('home'))
             else:
-                flash("Try again")
+                flash(Markup("<p><center>Wrong Email/Password!</center></p>"))
                 return render_template('login.html')
         except:
-            flash("Some error")
+            flash(Markup(
+                "<p><center>Sorry there has been an error! Please Try Again.</center></p>"))
             return render_template("login.html")
 
 
@@ -106,19 +106,21 @@ def register():
 
             session['email'] = request.form['email']
             session['pass'] = request.form['pass']
+            session['name'] = session['email'].split("@")[0]
 
-            flash("please login now")
+            flash(Markup("<p><center>Please login now!</center></p>"))
             return render_template('login.html')
 
     except exc.IntegrityError:
-        flash("Error")
+        flash(Markup(
+            "<p><center>Sorry there has been an error! Please Try Again.</center></p>"))
         return render_template("signup.html")
 
 
 @app.route('/info', methods=['GET', 'POST'])
 def info():
     if session.get('logged_in'):
-        return render_template('info.html', user=session['username'])
+        return render_template('info.html', user=session['name'])
     else:
         return redirect(url_for('login'))
 
@@ -137,7 +139,7 @@ def refresh():
 @app.route('/spending_graph', methods=['GET', 'POST'])
 def spending_history():
     if not session.get('logged_in'):
-        form = forms.LoginForm(request.form)
+        return render_template('login.html')
     else:
 
         initial_gworld = 1350
@@ -168,13 +170,36 @@ def spending_history():
         graphJSON = json.dumps(graph, cls=plotly.utils.PlotlyJSONEncoder)
         # graphJSON = Markup(graphJSON)
 
-        return render_template('spending_history.html', graphJSON=graphJSON)
+        return render_template('spending_graph.html', graphJSON=graphJSON)
 
 
+# -------- Settings ---------------------------------------------------------- #
+@app.route('/settings', methods=['GET', 'POST'])
+def settings():
+
+    if not session.get('logged_in'):
+        return redirect(url_for('login'))
+    else:
+        if request.method == "POST":
+            if request.form['pass'] != "":
+                password = hashlib.md5(request.form['pass'].encode())
+                hashed_pass = password.hexdigest()
+
+            kitchen_response = request.form['demo-priority']
+
+            user = User.query.filter_by(email=session['email']).first()
+            user.password = hashed_pass
+            db.session.commit()
+
+        return render_template('settings.html', user=session['email'])
+
+
+# -------- Logout ---------------------------------------------------------- #
 @app.route('/logout/')
 def logout():
     # logout form
     session['logged_in'] = False
+    flash(Markup("<p><center>You have logged out. Thank you!</center></p>"))
     return redirect(url_for('home'))
 
 
@@ -183,25 +208,6 @@ def disconnect_user():
     session.clear()
     session.pop('random-key', None)
 
-
-#
-#
-# # -------- Settings ---------------------------------------------------------- #
-# @app.route('/settings', methods=['GET', 'POST'])
-# def settings():
-#     if session.get('logged_in'):
-#         if request.method == 'POST':
-#             password = request.form['password']
-#             if password != "":
-#                 password = helpers.hash_password(password)
-#             email = request.form['email']
-#             helpers.change_user(password=password, email=email)
-#             return json.dumps({'status': 'Saved'})
-#         user = helpers.get_user()
-#         return render_template('settings.html', user=user)
-#     return redirect(url_for('login'))
-#
-#
 
 
 # ======== Main ============================================================== #

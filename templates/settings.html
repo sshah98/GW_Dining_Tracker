@@ -7,7 +7,7 @@
 <html>
 
 <head>
-	<title>Home</title>
+	<title>Settings</title>
 	<meta charset="utf-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 	<link rel="stylesheet" href="../static/assets2/css/main.css" />
@@ -54,13 +54,35 @@
 		<!-- Main -->
 		<div id="main">
 			<div class="inner">
-				<h1>Home</h1>
-				<p>Welcome to DineMore, the only app aimed to help you save your dining dollars at GWU!
-				</p>
-				<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis dapibus rutrum facilisis. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Etiam tristique libero eu nibh porttitor fermentum. Nullam venenatis
-					erat id vehicula viverra. Nunc ultrices eros ut ultricies condimentum. Mauris risus lacus, blandit sit amet venenatis non, bibendum vitae dolor. Nunc lorem mauris, fringilla in aliquam at, euismod in lectus. Pellentesque habitant morbi tristique
-					senectus et netus et malesuada fames ac turpis egestas. In non lorem sit amet elit placerat maximus. Pellentesque aliquam maximus risus, vel venenatis mauris vehicula hendrerit.</p>
-
+				<section>
+					<h2>User Settings</h2>
+					<h4>Please update your settings here</h4>
+					<form method="POST" action="/settings">
+						<div class="row gtr-uniform">
+							<div class="col-6 col-12-xsmall">
+								{{ user }}
+							</div>
+							<div class="col-6 col-12-xsmall">
+								<input type="password" name="pass" id="pass" placeholder="New Password" />
+							</div>
+							<p>I have a kitchen:</p>
+							<div class="col-4 col-12-small">
+								<input type="radio" id="demo-priority-low" name="demo-priority" value="yes">
+								<label for="demo-priority-low">Yes</label>
+							</div>
+							<div class="col-4 col-12-small">
+								<input type="radio" id="demo-priority-normal" name="demo-priority" value="no">
+								<label for="demo-priority-normal">No</label>
+							</div>
+							<div class="col-12">
+								<ul class="actions">
+									<li><input type="submit" value="Update Information" class="primary" /></li>
+									<li><input type="reset" value="Reset" /></li>
+								</ul>
+							</div>
+						</div>
+					</form>
+				</section>
 			</div>
 		</div>
 
