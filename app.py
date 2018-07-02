@@ -128,12 +128,16 @@ def info():
 @app.route('/refresh', methods=['GET', 'POST'])
 def refresh():
 
-    SpendingHistory(session['email'], session['pass']).spending_history()
-    # print(session['spending'])
+    try:
+        SpendingHistory(session['email'], session['pass']).spending_history()
+        flash(Markup("<p><center>GWorld Dining Dollars Updated!</center></p>"))
 
-    flash(Markup("<p><center>GWorld Dining Dollars Updated!</center></p>"))
+    except ConnectionError as e:
+        flash(Markup("<p><center>Unable to connect to GET. Please try again later!</center></p>"))
 
-    return redirect(url_for('home'))
+    finally:
+
+        return redirect(url_for('home'))
 
 
 @app.route('/spending_graph', methods=['GET', 'POST'])

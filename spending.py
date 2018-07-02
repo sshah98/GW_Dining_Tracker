@@ -92,8 +92,6 @@ class SpendingHistory():
                 df.drop(columns=['date', 'time'], inplace=True)
                 df.sort_values(by='datetime', inplace=True, ascending=True)
 
-                print(df)
-
                 # --- local testing --- #
                 # engine = create_engine("postgresql://suraj:password@localhost/gworld")
 
