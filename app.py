@@ -77,8 +77,6 @@ def login():
         _pass = hashlib.md5(request.form['pass'].encode())
         _pass = _pass.hexdigest()
 
-        print(_email, _pass, request.form['email'], request.form['pass'])
-
         try:
 
             # hash the password. if the same, then login
