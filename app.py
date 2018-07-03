@@ -36,20 +36,33 @@ def home():
     if not session.get('logged_in'):
         return render_template('login.html')
     else:
-        # df = pd.read_sql_query(
-        #     "SELECT * FROM history WHERE email='%s'" % (session['email']), database)
-        #
-        # if df.empty:
-        #     return redirect(url_for('refresh'))
-        #
-        # else:
-        #     df['currentval'] = np.nan
-        #     df['currentval'] = df['price'] - df['currentval']
-        #     df.currentval = 1350 + df.price.cumsum()
-        #     df.drop(columns=['date', 'time'], inplace=True)
-        #     df.set_index('datetime', inplace=True)
+
+        df = pd.read_sql_query(
+            "SELECT * FROM history WHERE email='%s'" % (session['email']), database)
+        
+        if df.empty:
+            flash(Markup("<p><b>Please click <a href='/refresh'>refresh now</a> to get the latest data!</b></p>"))
+        
+        else:
+            
+            data = User.query.filter_by(email=session['email']).first()
+            
+            if data.kitchen == "yes":
+                initial_gworld = 1400
+            
+            elif data.kitchen == "no":
+                initial_gworld = 2600
+            else:
+                initial_gworld = 1350
+            
+            df['currentval'] = np.nan
+            df['currentval'] = df['price'] - df['currentval']
+            df.currentval = initial_gworld + df.price.cumsum()
+            df.drop(columns=['date', 'time'], inplace=True)
+            df.set_index('datetime', inplace=True)
 
         graphs = 0
+        print(df.head())
 
         return render_template('home.html', user=session['name'], graphs=graphs)
 
@@ -98,8 +111,11 @@ def register():
 
             password = hashlib.md5(request.form['pass'].encode())
             hashed_pass = password.hexdigest()
+
+            kitchen_response = request.form['demo-priority']
+
             new_user = User(
-                name=request.form['name'], email=request.form['email'], password=hashed_pass)
+                name=request.form['name'], email=request.form['email'], password=hashed_pass, kitchen=kitchen_response)
 
             db.session.add(new_user)
             db.session.commit()
@@ -130,10 +146,10 @@ def refresh():
 
     try:
         SpendingHistory(session['email'], session['pass']).spending_history()
-        flash(Markup("<p><center>GWorld Dining Dollars Updated!</center></p>"))
+        flash(Markup("<p><b>GWorld Dining Dollars Updated!</b></p>"))
 
     except ConnectionError as e:
-        flash(Markup("<p><center>Unable to connect to GET. Please try again later!</center></p>"))
+        flash(Markup("<p><b>Unable to connect to GET. Please try again later!</b></p>"))
 
     finally:
 
@@ -193,6 +209,7 @@ def settings():
 
             user = User.query.filter_by(email=session['email']).first()
             user.password = hashed_pass
+            user.kitchen = kitchen_response
             db.session.commit()
 
         flash(Markup("<p><center>User Information Updated!</center></p>"))

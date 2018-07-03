@@ -35,7 +35,7 @@ class SpendingHistory():
             options.add_argument("--disable-extensions")
 
             # --- local testing --- #
-            # driver = webdriver.Chrome(executable_path='chromedriver', chrome_options=options)
+            driver = webdriver.Chrome(executable_path='chromedriver', chrome_options=options)
 
             # --- heroku --- #
             driver = webdriver.Chrome(executable_path=os.environ['CHROMEDRIVER_PATH'], chrome_options=options)
