@@ -39,22 +39,23 @@ def home():
 
         df = pd.read_sql_query(
             "SELECT * FROM history WHERE email='%s'" % (session['email']), database)
-        
+
         if df.empty:
-            flash(Markup("<p><b>Please click <a href='/refresh'>refresh now</a> to get the latest data!</b></p>"))
-        
+            flash(Markup(
+                "<p><b>Please click <a href='/refresh'>refresh now</a> to get the latest data!</b></p>"))
+
         else:
-            
+
             data = User.query.filter_by(email=session['email']).first()
-            
+
             if data.kitchen == "yes":
                 initial_gworld = 1400
-            
+
             elif data.kitchen == "no":
                 initial_gworld = 2600
             else:
                 initial_gworld = 1350
-            
+
             df['currentval'] = np.nan
             df['currentval'] = df['price'] - df['currentval']
             df.currentval = initial_gworld + df.price.cumsum()
@@ -204,13 +205,20 @@ def settings():
                 hashed_pass = password.hexdigest()
 
                 user = User.query.filter_by(email=session['email']).first()
-                kitchen_response = request.form['demo-priority']
-
                 user.password = hashed_pass
+
+                kitchen_response = request.form['demo-priority']
                 user.kitchen = kitchen_response
                 db.session.commit()
 
-                flash(Markup("<p><center>User Information Updated!</center></p>"))
+            elif request.form['pass'] == "":
+                user = User.query.filter_by(email=session['email']).first()
+
+                kitchen_response = request.form['demo-priority']
+                user.kitchen = kitchen_response
+                db.session.commit()
+
+            flash(Markup("<p><center>User Information Updated!</center></p>"))
 
         return render_template('settings.html', user=session['email'])
 
