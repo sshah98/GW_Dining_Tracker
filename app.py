@@ -203,14 +203,14 @@ def settings():
                 password = hashlib.md5(request.form['pass'].encode())
                 hashed_pass = password.hexdigest()
 
-            kitchen_response = request.form['demo-priority']
+                user = User.query.filter_by(email=session['email']).first()
+                kitchen_response = request.form['demo-priority']
 
-            user = User.query.filter_by(email=session['email']).first()
-            user.password = hashed_pass
-            user.kitchen = kitchen_response
-            db.session.commit()
+                user.password = hashed_pass
+                user.kitchen = kitchen_response
+                db.session.commit()
 
-        flash(Markup("<p><center>User Information Updated!</center></p>"))
+                flash(Markup("<p><center>User Information Updated!</center></p>"))
 
         return render_template('settings.html', user=session['email'])
 
