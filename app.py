@@ -62,8 +62,42 @@ def home():
             df.drop(columns=['date', 'time'], inplace=True)
             df.set_index('datetime', inplace=True)
 
-        graphs = 0
-        print(df.head())
+        df = df[['currentval']]
+        print(df.tail())
+
+        # print(df.head())
+        forecast_out = int(7) # predicting 30 days into future
+        df['Prediction'] = df[['currentval']].shift(-forecast_out) #  label column with data shifted 30 units up
+        # print(df.tail())
+
+        X = np.array(df.drop(['Prediction'], 1))
+        X = preprocessing.scale(X)
+
+        X_forecast = X[-forecast_out:] # set X_forecast equal to last 30
+        X = X[:-forecast_out] # remove last 30 from X
+        y = np.array(df['Prediction'])
+        y = y[:-forecast_out]
+        X_train, X_test, y_train, y_test = cross_validation.train_test_split(X, y, test_size = 0.2)
+
+        clf = LinearRegression()
+        clf.fit(X_train,y_train)
+
+        # Testing
+        confidence = clf.score(X_test, y_test)
+        print("confidence: ", confidence)
+
+        forecast_prediction = clf.predict(X_forecast)
+        print(forecast_prediction)
+
+        import matplotlib.pyplot as plt
+        plt.plot(forecast_prediction)
+        plt.ylabel('Price')
+        plt.xlabel('Days')
+        plt.show()
+
+
+
+
 
         return render_template('home.html', user=session['name'], graphs=graphs)
 
@@ -142,17 +176,27 @@ def info():
 
 @app.route('/refresh', methods=['GET', 'POST'])
 def refresh():
+    if session.get('logged_in'):
+        try:
+            SpendingHistory(session['email'], session['pass']).spending_history()
+            flash(Markup("<p><b>GWorld Dining Dollars Updated!</b></p>"))
 
-    try:
-        SpendingHistory(session['email'], session['pass']).spending_history()
-        flash(Markup("<p><b>GWorld Dining Dollars Updated!</b></p>"))
+        except ConnectionError as e:
+            flash(Markup("<p><b>Unable to connect to GET. Please try again later!</b></p>"))
 
-    except ConnectionError as e:
-        flash(Markup("<p><b>Unable to connect to GET. Please try again later!</b></p>"))
+        finally:
+            return redirect(url_for('home'))
+    
+    else:
+        return redirect(url_for('login'))
 
-    finally:
-
-        return redirect(url_for('home'))
+            
+@app.route('/map', methods = ['GET', 'POST'])
+def map():
+    if session.get('logged_in'):
+        return render_template('map.html')
+    else:
+        return redirect(url_for('login'))
 
 
 @app.route('/spending_graph', methods=['GET', 'POST'])

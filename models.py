@@ -27,4 +27,4 @@ class History(db.Model):
     datetime = db.Column(db.DateTime)
 
     def __repr__(self):
-        return '<id {}>'.format(self.id)
+        return 'id {}'.format(self.id)
