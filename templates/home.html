@@ -14,6 +14,13 @@
 	<noscript><link rel="stylesheet" href="../static/assets2/css/noscript.css" /></noscript>
 	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous">
 	<link rel="icon" type="image/png" href="../static/assets/images/icons/favicon.ico" />
+	
+	<!-- D3.js -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.6/d3.min.js"></script>
+	<!-- jQuery -->
+	<script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+	<!-- Plotly.js -->
+	<script src="https://d14fo0winaifog.cloudfront.net/plotly-basic.js"></script>
 
 </head>
 
@@ -55,7 +62,7 @@
 		<div id="main">
 			<div class="inner">
 				<h1>Home</h1>
-				<p>Welcome to DineMore, the only app aimed to help you save your dining dollars at GWU!
+				<p>Welcome {{ user }} to DineMore, the only app aimed to help you save your dining dollars at GWU!
 				</p>
 				{% with messages = get_flashed_messages() %} {% if messages %}
 				<p class=flashes>
@@ -64,6 +71,57 @@
 					{% endfor %}
 				</p>
 				{% endif %} {% endwith %}
+				<div id="graph" class='col-6 col-12-medium'></div>
+
+				<footer>
+					<script type="text/javascript">
+					var graph = {{graphJSON | safe}};
+					Plotly.plot("graph", graph.data, graph.layout);
+					</script>
+				</footer>
+				
+				<section>
+					<h2>Predicted Spending</h2>
+					<div class="table-wrapper">
+						<table>
+							<thead>
+								<tr>
+									<th>Name</th>
+									<th>Description</th>
+									<th>Price</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td>Item One</td>
+									<td>Ante turpis integer aliquet porttitor.</td>
+									<td>29.99</td>
+								</tr>
+								<tr>
+									<td>Item Two</td>
+									<td>Vis ac commodo adipiscing arcu aliquet.</td>
+									<td>19.99</td>
+								</tr>
+								<tr>
+									<td>Item Three</td>
+									<td> Morbi faucibus arcu accumsan lorem.</td>
+									<td>29.99</td>
+								</tr>
+								<tr>
+									<td>Item Four</td>
+									<td>Vitae integer tempus condimentum.</td>
+									<td>19.99</td>
+								</tr>
+								<tr>
+									<td>Item Five</td>
+									<td>Ante turpis integer aliquet porttitor.</td>
+									<td>29.99</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</section>
+
 
 			</div>
 		</div>

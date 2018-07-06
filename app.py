@@ -5,9 +5,13 @@ import os
 import hashlib
 import plotly
 import psycopg2
+import datetime
 import pandas as pd
 import numpy as np
 import plotly.graph_objs as go
+
+from sklearn.linear_model import LinearRegression
+from sklearn import preprocessing, cross_validation, svm
 
 from flask import Flask, redirect, url_for, render_template, request, session, flash, Markup
 from flask_sqlalchemy import SQLAlchemy
@@ -47,6 +51,7 @@ def home():
         else:
 
             data = User.query.filter_by(email=session['email']).first()
+            predicted_days = 7
 
             if data.kitchen == "yes":
                 initial_gworld = 1400
@@ -62,44 +67,60 @@ def home():
             df.drop(columns=['date', 'time'], inplace=True)
             df.set_index('datetime', inplace=True)
 
-        df = df[['currentval']]
-        print(df.tail())
+            df = df[['currentval']]
 
-        # print(df.head())
-        forecast_out = int(7) # predicting 30 days into future
-        df['Prediction'] = df[['currentval']].shift(-forecast_out) #  label column with data shifted 30 units up
-        # print(df.tail())
+            forecast_out = int(7)  # predicting 30 days into future
+            # label column with data shifted 30 units up
+            df['Prediction'] = df[['currentval']].shift(-forecast_out)
 
-        X = np.array(df.drop(['Prediction'], 1))
-        X = preprocessing.scale(X)
+            X = np.array(df.drop(['Prediction'], 1))
+            X = preprocessing.scale(X)
 
-        X_forecast = X[-forecast_out:] # set X_forecast equal to last 30
-        X = X[:-forecast_out] # remove last 30 from X
-        y = np.array(df['Prediction'])
-        y = y[:-forecast_out]
-        X_train, X_test, y_train, y_test = cross_validation.train_test_split(X, y, test_size = 0.2)
+            X_forecast = X[-forecast_out:]  # set X_forecast equal to last 30
+            X = X[:-forecast_out]  # remove last 30 from X
+            y = np.array(df['Prediction'])
+            y = y[:-forecast_out]
+            X_train, X_test, y_train, y_test = cross_validation.train_test_split(
+                X, y, test_size=0.2)
 
-        clf = LinearRegression()
-        clf.fit(X_train,y_train)
+            clf = LinearRegression()
+            clf.fit(X_train, y_train)
 
-        # Testing
-        confidence = clf.score(X_test, y_test)
-        print("confidence: ", confidence)
+            confidence = clf.score(X_test, y_test)  # Testing
+            forecast_prediction = clf.predict(X_forecast)
 
-        forecast_prediction = clf.predict(X_forecast)
-        print(forecast_prediction)
+            future_days_list = []
+            for i in range(1, predicted_days + 1):
+                future_days_list.append(
+                    df.tail(1).index + datetime.timedelta(days=i))
 
-        import matplotlib.pyplot as plt
-        plt.plot(forecast_prediction)
-        plt.ylabel('Price')
-        plt.xlabel('Days')
-        plt.show()
+            predicted_df = pd.DataFrame(future_days_list)
+            forecast = pd.Series(forecast_prediction)
+            predicted_df['currentval'] = forecast.values
+            predicted_df.columns = ['datetime', 'price']
+            predicted_df['datetime'] = predicted_df['datetime'].dt.date
+            predicted_df.set_index('datetime', inplace=True)
 
+            graph = dict(
+                data=[go.Scatter(
+                    x=predicted_df.index,
+                    y=predicted_df['price']
+                )],
+                layout=dict(
+                    title='Predicted Week of Spending',
+                    hovermode= 'closest',
+                    autosize=True,
+                    yaxis=dict(
+                        title="Price"
+                    ),
+                    xaxis=dict(
+                        title="Days"
+                    )
+                )
+            )
+            graphJSON = json.dumps(graph, cls=plotly.utils.PlotlyJSONEncoder)
 
-
-
-
-        return render_template('home.html', user=session['name'], graphs=graphs)
+        return render_template('home.html', user=session['name'], graphJSON=graphJSON)
 
 
 @app.route('/login', methods=['GET', 'POST'])
@@ -178,20 +199,22 @@ def info():
 def refresh():
     if session.get('logged_in'):
         try:
-            SpendingHistory(session['email'], session['pass']).spending_history()
+            SpendingHistory(session['email'],
+                            session['pass']).spending_history()
             flash(Markup("<p><b>GWorld Dining Dollars Updated!</b></p>"))
 
         except ConnectionError as e:
-            flash(Markup("<p><b>Unable to connect to GET. Please try again later!</b></p>"))
+            flash(
+                Markup("<p><b>Unable to connect to GET. Please try again later!</b></p>"))
 
         finally:
             return redirect(url_for('home'))
-    
+
     else:
         return redirect(url_for('login'))
 
-            
-@app.route('/map', methods = ['GET', 'POST'])
+
+@app.route('/map', methods=['GET', 'POST'])
 def map():
     if session.get('logged_in'):
         return render_template('map.html')
