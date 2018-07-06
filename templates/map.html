@@ -7,13 +7,20 @@
 <html>
 
 <head>
-	<title>Settings</title>
+	<title>Home</title>
 	<meta charset="utf-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 	<link rel="stylesheet" href="../static/assets2/css/main.css" />
 	<noscript><link rel="stylesheet" href="../static/assets2/css/noscript.css" /></noscript>
 	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous">
 	<link rel="icon" type="image/png" href="../static/assets/images/icons/favicon.ico" />
+	
+	<!-- D3.js -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.6/d3.min.js"></script>
+	<!-- jQuery -->
+	<script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+	<!-- Plotly.js -->
+	<script src="https://d14fo0winaifog.cloudfront.net/plotly-basic.js"></script>
 
 </head>
 
@@ -55,42 +62,20 @@
 		<!-- Main -->
 		<div id="main">
 			<div class="inner">
-				<section>
-					<h2>User Settings</h2>
-					<h4>Please update your settings here</h4>
-					{% with messages = get_flashed_messages() %} {% if messages %}
-					<p class=flashes>
-						{% for message in messages %}
-						<p>{{ message }}</p>
-						{% endfor %}
-					</p>
-					{% endif %} {% endwith %}
-					<form method="POST" action="/settings">
-						<div class="row gtr-uniform">
-							<div class="col-6 col-12-xsmall">
-								{{ user }}
-							</div>
-							<div class="col-6 col-12-xsmall">
-								<input type="password" name="pass" id="pass" placeholder="New Password" />
-							</div>
-							<p>I have a kitchen:</p>
-							<div class="col-4 col-12-small">
-								<input type="radio" id="demo-priority-low" name="demo-priority" value="yes">
-								<label for="demo-priority-low">Yes</label>
-							</div>
-							<div class="col-4 col-12-small">
-								<input type="radio" id="demo-priority-normal" name="demo-priority" value="no">
-								<label for="demo-priority-normal">No</label>
-							</div>
-							<div class="col-12">
-								<ul class="actions">
-									<li><input type="submit" value="Update Information" class="primary" /></li>
-									<li><input type="reset" value="Reset" /></li>
-								</ul>
-							</div>
-						</div>
-					</form>
-				</section>
+				<h1>Map</h1>
+				<p>Here is a map of all accepting GWorld Vendors
+				</p>
+				{% with messages = get_flashed_messages() %} {% if messages %}
+				<p class=flashes>
+					{% for message in messages %}
+					<p>{{ message }}</p>
+					{% endfor %}
+				</p>
+				{% endif %} {% endwith %}
+				
+				<p><iframe src="//batchgeo.com/map/5d45c1b3cab668ce3e3148a14ca8d4c8" frameborder="0" width="100%" height="550" style="border:1px solid #aaa;"></iframe></p><p><small>View <a href="https://batchgeo.com/map/5d45c1b3cab668ce3e3148a14ca8d4c8">GWorld Vendors</a> in a full screen map</small></p>
+
+
 			</div>
 		</div>
 

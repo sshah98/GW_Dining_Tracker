@@ -21,18 +21,26 @@ Chef Brian's Comfort Kitchen,1020 19th St NW,http://iamchefbrian.com/chef-brians
 Chick-fil-A,2121 H St NW,https://www.chick-fil-a.com/Locations/DC/George-Washington-University,,Yes,Yes,,,,,,
 Chipotle,"1837 M St NW, 2000 Pennsylvania Ave NW
 ",https://chipotle.com/home?format=aspx&type=default,Yes,Yes,Yes,,,,,,
-Chop't Creative Salad Co.,"1105 ½ 19th St NW, 1730 Pennsylvania Ave NW
+Chop't Creative Salad Co.,1105 19th St NW,http://choptsalad.com/,Yes,Yes,,,,,,,
+Chop't Creative Salad Co.,"1730 Pennsylvania Ave NW
 ",http://choptsalad.com/,Yes,Yes,,,,,,,
 The Coffee Cart,2122 H St NW,,,,,,,,,,
 Colonial Bistro,2300 I St NW,,Yes,,,Yes,,,,,Yes
 Crepeaway,2001 L St NW,http://www.crepeaway.com/,Yes,,Yes,,Yes,Yes,Yes,,
 Crepe N Cream,2818 Pennsylvania Ave NW,http://crepencream.eat24hour.com/,Yes,,Yes,,,Yes,,,
-CVS Pharmacy,"1901 Pennsylvania Ave NW, 2550 Virginia Ave NW,
-2125 E St NW,
-4859 MacArthur Blvd NW,
-1990 K St NW,
-2000 M St NW,
-2000 Pennsylvania Ave NW,
+CVS Pharmacy,"1901 Pennsylvania Ave NW
+",http://www.cvs.com/?WT.mc_id=PS_DB_09102012_AlwaysON&WT.srch=1&utm_source=Google&utm_medium=cpc&utm_term=cvs&utm_campaign=paid%2Bsearch,Yes,Yes,Yes,Yes,,,,Yes,Yes
+CVS Pharmacy,"2550 Virginia Ave NW
+",http://www.cvs.com/?WT.mc_id=PS_DB_09102012_AlwaysON&WT.srch=1&utm_source=Google&utm_medium=cpc&utm_term=cvs&utm_campaign=paid%2Bsearch,Yes,Yes,Yes,Yes,,,,Yes,Yes
+CVS Pharmacy,"2125 E St NW
+",http://www.cvs.com/?WT.mc_id=PS_DB_09102012_AlwaysON&WT.srch=1&utm_source=Google&utm_medium=cpc&utm_term=cvs&utm_campaign=paid%2Bsearch,Yes,Yes,Yes,Yes,,,,Yes,Yes
+CVS Pharmacy,"4859 MacArthur Blvd NW
+",http://www.cvs.com/?WT.mc_id=PS_DB_09102012_AlwaysON&WT.srch=1&utm_source=Google&utm_medium=cpc&utm_term=cvs&utm_campaign=paid%2Bsearch,Yes,Yes,Yes,Yes,,,,Yes,Yes
+CVS Pharmacy,"1990 K St NW
+",http://www.cvs.com/?WT.mc_id=PS_DB_09102012_AlwaysON&WT.srch=1&utm_source=Google&utm_medium=cpc&utm_term=cvs&utm_campaign=paid%2Bsearch,Yes,Yes,Yes,Yes,,,,Yes,Yes
+CVS Pharmacy,"2000 M St NW
+",http://www.cvs.com/?WT.mc_id=PS_DB_09102012_AlwaysON&WT.srch=1&utm_source=Google&utm_medium=cpc&utm_term=cvs&utm_campaign=paid%2Bsearch,Yes,Yes,Yes,Yes,,,,Yes,Yes
+CVS Pharmacy,"2000 Pennsylvania Ave NW
 ",http://www.cvs.com/?WT.mc_id=PS_DB_09102012_AlwaysON&WT.srch=1&utm_source=Google&utm_medium=cpc&utm_term=cvs&utm_campaign=paid%2Bsearch,Yes,Yes,Yes,Yes,,,,Yes,Yes
 DC Pizza,1103 19th St NW,http://www.dcpizzaonline.com/,Yes,Yes,,,,Yes,,,
 Devon & Blakely,2200 Pennsylvania Ave NW,http://devonblakelyfoggybottom.com,Yes,Yes,Yes,Yes,,Yes,,,
@@ -53,7 +61,8 @@ GW Delicatessen,2133 G St NW,,Yes,,Yes,Yes,,,,,
 GW Hospital Cafeteria,900 23rd St NW,http://www.thehouseoffalafel.com/,Yes,,Yes,Yes,Yes,,,,
 The House of Falafel,Food Truck,http://radining.compass-usa.com/gwdining/Pages/Home.aspx,Yes,,,,,Yes,,,
 Higher Grounds Coffee Shop,2100 Foxhall Rd NW,,Yes,Yes,,Yes,,,,,
-Jetties,"1921 I St NW, 1609 Foxhall Rd NW",http://jettiesdc.com/,Yes,,Yes,,,Yes,,,
+Jetties,1921 I St NW,http://jettiesdc.com/,Yes,,Yes,,,Yes,,,
+Jetties,1609 Foxhall Rd NW,http://jettiesdc.com/,Yes,,Yes,,,Yes,,,
 JRINK Juicery,1922 I St NW,http://jrink.com,Yes,Yes,,Yes,,Yes,,,
 Juan Valdez Cafe,1889 F St NW,http://juanvaldezcoffee.com/,Yes,,,Yes,,,,,
 Kaz Sushi Bistro,1915 I St NW,http://www.kazsushibistro.com/,Yes,,Yes,,,Yes,,,
@@ -86,8 +95,9 @@ Safeway,4865 MacArthur Blvd NW,http://www.safeway.com/IFL/Grocery/Home,Yes,Yes,Y
 Sizzling Express,538 23rd St NW,http://sizzex1.comcastbiz.net/,Yes,,Yes,Yes,,,,,
 Sol Mexican Grill,District House (LL)/2121 H St NW,,Yes,Yes,Yes,Yes,,,,,
 South Block Juice,Lerner Health & Wellness Center lobby/2301 G St NW,http://southblockjuice.com/pages/gwu,Yes,Yes,Yes,,,,,,
-Starbucks,"1957 E St NW, 2130 H St NW, 
-GW Hospital ground floor lobby",http://www.starbucks.com/?gclid=CKC4-L66pL0CFaVxOgodOnUA2A,Yes,Yes,Yes,Yes,,,,,
+Starbucks,1957 E St NW,http://www.starbucks.com/?gclid=CKC4-L66pL0CFaVxOgodOnUA2A,Yes,Yes,Yes,Yes,,,,,
+Starbucks,2130 H St NW,http://www.starbucks.com/?gclid=CKC4-L66pL0CFaVxOgodOnUA2A,Yes,Yes,Yes,Yes,,,,,
+Starbucks,GW Hospital ground floor lobby,http://www.starbucks.com/?gclid=CKC4-L66pL0CFaVxOgodOnUA2A,Yes,Yes,Yes,Yes,,,,,
 Subway,1959 E St NW,http://www.subway.com/en-us,Yes,,Yes,Yes,,,,,Yes
 Surfside ,1800 N St NW,,,Yes,,,,,,,
 Sweetgreen,The Avenue/2221 I St NW,http://www.sweetgreen.com/,Yes,Yes,Yes,,,,,,

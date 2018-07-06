@@ -108,7 +108,7 @@ def home():
                 )],
                 layout=dict(
                     title='Predicted Week of Spending',
-                    hovermode= 'closest',
+                    hovermode='closest',
                     autosize=True,
                     yaxis=dict(
                         title="Price"
@@ -120,7 +120,7 @@ def home():
             )
             graphJSON = json.dumps(graph, cls=plotly.utils.PlotlyJSONEncoder)
 
-        return render_template('home.html', user=session['name'], graphJSON=graphJSON)
+        return render_template('home.html', user=session['name'], graphJSON=graphJSON, predicted_df=predicted_df)
 
 
 @app.route('/login', methods=['GET', 'POST'])
