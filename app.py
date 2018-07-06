@@ -109,7 +109,6 @@ def home():
                 layout=dict(
                     title='Predicted Week of Spending',
                     hovermode='closest',
-                    autosize=True,
                     yaxis=dict(
                         title="Price"
                     ),
