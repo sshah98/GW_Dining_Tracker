@@ -73,7 +73,7 @@
 				</p>
 				{% endif %} {% endwith %}
 				<div id="graph" class='col-6 col-12-medium'></div>
-
+				{% if graphJSON %}
 				<footer>
 					<script type="text/javascript">
 						var graph = {{graphJSON | safe}};
@@ -125,7 +125,7 @@
 					</div>
 				</section>
 
-
+			{% endif %}
 			</div>
 		</div>
 
