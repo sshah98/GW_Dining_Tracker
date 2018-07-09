@@ -47,80 +47,84 @@ def home():
         if df.empty:
             flash(Markup(
                 "<p><b>Please click <a href='/refresh'>refresh now</a> to get the latest data!</b></p>"))
-
-        else:
-
-            data = User.query.filter_by(email=session['email']).first()
-            predicted_days = 7
-
-            if data.kitchen == "yes":
-                initial_gworld = 1400
-
-            elif data.kitchen == "no":
-                initial_gworld = 2600
+        try:
+            
             else:
-                initial_gworld = 1350
 
-            df['currentval'] = np.nan
-            df['currentval'] = df['price'] - df['currentval']
-            df.currentval = initial_gworld + df.price.cumsum()
-            df.drop(columns=['date', 'time'], inplace=True)
-            df.set_index('datetime', inplace=True)
+                data = User.query.filter_by(email=session['email']).first()
+                predicted_days = 7
 
-            df = df[['currentval']]
+                if data.kitchen == "yes":
+                    initial_gworld = 1400
 
-            forecast_out = int(7)  # predicting 30 days into future
-            # label column with data shifted 30 units up
-            df['Prediction'] = df[['currentval']].shift(-forecast_out)
+                elif data.kitchen == "no":
+                    initial_gworld = 2600
+                else:
+                    initial_gworld = 1350
 
-            X = np.array(df.drop(['Prediction'], 1))
-            X = preprocessing.scale(X)
+                df['currentval'] = np.nan
+                df['currentval'] = df['price'] - df['currentval']
+                df.currentval = initial_gworld + df.price.cumsum()
+                df.drop(columns=['date', 'time'], inplace=True)
+                df.set_index('datetime', inplace=True)
 
-            X_forecast = X[-forecast_out:]  # set X_forecast equal to last 30
-            X = X[:-forecast_out]  # remove last 30 from X
-            y = np.array(df['Prediction'])
-            y = y[:-forecast_out]
-            X_train, X_test, y_train, y_test = cross_validation.train_test_split(
-                X, y, test_size=0.2)
+                df = df[['currentval']]
 
-            clf = LinearRegression()
-            clf.fit(X_train, y_train)
+                forecast_out = int(7)  # predicting 30 days into future
+                # label column with data shifted 30 units up
+                df['Prediction'] = df[['currentval']].shift(-forecast_out)
 
-            confidence = clf.score(X_test, y_test)  # Testing
-            forecast_prediction = clf.predict(X_forecast)
+                X = np.array(df.drop(['Prediction'], 1))
+                X = preprocessing.scale(X)
 
-            future_days_list = []
-            for i in range(1, predicted_days + 1):
-                future_days_list.append(
-                    df.tail(1).index + datetime.timedelta(days=i))
+                X_forecast = X[-forecast_out:]  # set X_forecast equal to last 30
+                X = X[:-forecast_out]  # remove last 30 from X
+                y = np.array(df['Prediction'])
+                y = y[:-forecast_out]
+                X_train, X_test, y_train, y_test = cross_validation.train_test_split(
+                    X, y, test_size=0.2)
 
-            predicted_df = pd.DataFrame(future_days_list)
-            forecast = pd.Series(forecast_prediction)
-            predicted_df['currentval'] = forecast.values
-            predicted_df.columns = ['datetime', 'price']
-            predicted_df['datetime'] = predicted_df['datetime'].dt.date
-            predicted_df.set_index('datetime', inplace=True)
+                clf = LinearRegression()
+                clf.fit(X_train, y_train)
 
-            graph = dict(
-                data=[go.Scatter(
-                    x=predicted_df.index,
-                    y=predicted_df['price']
-                )],
-                layout=dict(
-                    title='Predicted Week of Spending',
-                    hovermode='closest',
-                    yaxis=dict(
-                        title="Price"
-                    ),
-                    xaxis=dict(
-                        title="Days"
+                confidence = clf.score(X_test, y_test)  # Testing
+                forecast_prediction = clf.predict(X_forecast)
+
+                future_days_list = []
+                for i in range(1, predicted_days + 1):
+                    future_days_list.append(
+                        df.tail(1).index + datetime.timedelta(days=i))
+
+                predicted_df = pd.DataFrame(future_days_list)
+                forecast = pd.Series(forecast_prediction)
+                predicted_df['currentval'] = forecast.values
+                predicted_df.columns = ['datetime', 'price']
+                predicted_df['datetime'] = predicted_df['datetime'].dt.date
+                predicted_df.set_index('datetime', inplace=True)
+
+                graph = dict(
+                    data=[go.Scatter(
+                        x=predicted_df.index,
+                        y=predicted_df['price']
+                    )],
+                    layout=dict(
+                        title='Predicted Week of Spending',
+                        hovermode='closest',
+                        yaxis=dict(
+                            title="Price"
+                        ),
+                        xaxis=dict(
+                            title="Days"
+                        )
                     )
                 )
-            )
-            graphJSON = json.dumps(graph, cls=plotly.utils.PlotlyJSONEncoder)
+                graphJSON = json.dumps(graph, cls=plotly.utils.PlotlyJSONEncoder)
 
-        return render_template('home.html', user=session['name'], graphJSON=graphJSON, predicted_df=predicted_df)
+            return render_template('home.html', user=session['name'], graphJSON=graphJSON, predicted_df=predicted_df)
 
+        except UnboundLocalError as e:
+            
+            return render_template('home.html', user=session['name'])
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
