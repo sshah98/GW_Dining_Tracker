@@ -40,7 +40,7 @@ class SpendingHistory():
             # --- heroku --- #
             driver = webdriver.Chrome(executable_path=os.environ['CHROMEDRIVER_PATH'], chrome_options=options)
 
-            print("opening chrome")
+            print("[INFO] Opening browser...")
 
             driver.get("https://get.cbord.com/gwu/full/login.php")
             driver.find_element_by_id(
@@ -53,51 +53,36 @@ class SpendingHistory():
             soup = BeautifulSoup(driver.page_source, "lxml")
             driver.close()
 
-            print("found data")
+            print("[INFO] Closing browser, found data...")
 
             try:
-                table = soup.find(
-                    "table", {"class": "table table-striped table-bordered"})
 
-                # formatting before converting to dataframe
-                items = list(table.stripped_strings)
-                items = [elem for elem in items if elem.strip(",")]
-                items = items[4:]
-                items = [items[i:i + 5] for i in range(0, len(items), 5)]
+                table = soup.find('div', class_='history_table table-responsive')
 
-                # more cleaning data
-                df = pd.DataFrame(items)
-                df = df.astype(str)
-                df[4] = df[4].replace(
-                    {'\$': '', '\+ ': '', '- ': '-'}, regex=True)
-                df[4] = df[4].astype(np.float64)
-
-                # converts day, month, year time to proper format
-                df[1] = pd.to_datetime(df[1], errors='raise')
-                df[2] = pd.to_datetime(df[2], errors='raise')
-                df[2] = df[2] = pd.Series([val.time() for val in df[2]])
-
-                print("creating dataframe")
-
-                df = df.rename(columns={0: 'account', 1: 'date',
-                                        2: 'time', 3: 'vendor', 4: 'price'})
-
-                # sort values by date and reset the index for the count, which is PK
+                print("[INFO] Creating dataframe...")
+                
+                df = pd.read_html(table.prettify())[0]
+                df['Amount ($ / Meals)'] = df['Amount ($ / Meals)'].replace({'\$': '', '\+ ': '', '- ': '-'}, regex=True)
+                df['Date & Time'] = pd.to_datetime(df['Date & Time'])
+                
+                print('[INFO] Cleaning data...')
+                df.dropna(inplace=True)
+                df.columns = ['account', 'datetime', 'vendor', 'price']
+                df['price'] = df['price'].astype(np.float64)
                 df = df.reset_index(drop=True)
                 df.index.names = ['id']
                 df['email'] = self.email
-                df['datetime'] = pd.to_datetime(
-                    df['date'].apply(str) + ' ' + df['time'].apply(str))
-
-                df.drop(columns=['date', 'time'], inplace=True)
                 df.sort_values(by='datetime', inplace=True, ascending=True)
-
-                # --- local testing --- #
+                
+                
+                # # --- local testing --- #
                 # engine = create_engine("postgresql://suraj:password@localhost/gworld")
 
                 # --- heroku --- #
                 engine = create_engine("postgresql+psycopg2://gvbgcpweihoipq:d52e382574f9ad2313c882534fb07ceb52484e04f112b3e405c3e9ee441048b2@ec2-54-235-206-118.compute-1.amazonaws.com:5432/d4n9qk3lo1qsr2")
 
+                print('[INFO] Storing in database...')
+                
                 for i in range(len(df)):
                     try:
                         df.iloc[i:i + 1].to_sql(name="history",
@@ -105,10 +90,9 @@ class SpendingHistory():
                     except exc.IntegrityError:
                         pass
 
-                print("data collected")
-
+                print("[INFO] Finished collecting data...")
+                
             except AttributeError as e:
-                print("wrong username/password")
-
+                print("Wrong username/password")
         except NoSuchElementException as e:
             print("No internet connection")

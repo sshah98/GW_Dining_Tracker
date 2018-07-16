@@ -65,7 +65,6 @@ def home():
             df['currentval'] = np.nan
             df['currentval'] = df['price'] - df['currentval']
             df.currentval = initial_gworld + df.price.cumsum()
-            df.drop(columns=['date', 'time'], inplace=True)
             df.set_index('datetime', inplace=True)
 
             df = df[['currentval']]
@@ -238,7 +237,6 @@ def spending_history():
         df['currentval'] = np.nan
         df['currentval'] = df['price'] - df['currentval']
         df.currentval = initial_gworld + df.price.cumsum()
-        df.drop(columns=['date', 'time'], inplace=True)
         df.set_index('datetime', inplace=True)
 
         graph = dict(
