@@ -15,13 +15,12 @@ GW Students have a notorious experience with the GET App. It does not provide en
 -   Encrypted user authorizaton & user settings
 -   Modern user interface
 -   Graphs displaying overall spending
--   Visualizations showing percentages and other statistics (TODO)
--   Predictions of when GWorld will run out (TODO)
--   Map of all GWorld accepting places (TODO)
+-   Visualizations showing percentages and other statistics
+-   Predictions of when GWorld will run out
+-   Map of all GWorld accepting places
 -   Get data about the average amount spent per day (TODO)
 -   Data about how much you spend per week (TODO)
 -   Get data about places you spend the most money (TODO)
-
 -   More to come!
 
 ## How does it work
