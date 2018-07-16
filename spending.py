@@ -79,7 +79,7 @@ class SpendingHistory():
                 # engine = create_engine("postgresql://suraj:password@localhost/gworld")
 
                 # --- heroku --- #
-                engine = create_engine("postgresql+psycopg2://gvbgcpweihoipq:d52e382574f9ad2313c882534fb07ceb52484e04f112b3e405c3e9ee441048b2@ec2-54-235-206-118.compute-1.amazonaws.com:5432/d4n9qk3lo1qsr2")
+                engine = create_engine("postgresql+psycopg2://gefimacpqdfbke:07654d71914a5e524f41fb4b9cb31e8f1e9ba4ba9f7676bcd4afadf1caa9e5c5@ec2-50-16-217-122.compute-1.amazonaws.com:5432/d6ncrb2kqoer99")
 
                 print('[INFO] Storing in database...')
                 
